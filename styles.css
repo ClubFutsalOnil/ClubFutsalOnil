@@ -48,7 +48,7 @@ body {
 }
 
 .main-logo {
-    width: 100%;
+    width: 130%;
     height: auto;
     display: block;
 }
@@ -70,7 +70,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 16px;
+    padding: 20px 16px;
 }
 
 .small-logo {
@@ -88,7 +88,7 @@ nav ul li a {
     text-decoration: none;
     color: black;
     font-weight: bold;
-    font-size: 14.4px;
+    font-size: 20px;
     transition: color 0.3s ease;
 }
 
