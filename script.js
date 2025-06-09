@@ -2,7 +2,7 @@
 let allMatches = [];
 
 // Cargar datos del CSV
-fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQfwS96EPYPBFaHJc80g98zJ8HpMnLjTEf0JDzRCE4tdfpf6EYAMMPoEQ7kKvXLc9xEnoxMLBTFdear/pub?gid=1137432932&single=true&output=pdf') // ← Ruta absoluta para GitHub Pages
+fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQfwS96EPYPBFaHJc80g98zJ8HpMnLjTEf0JDzRCE4tdfpf6EYAMMPoEQ7kKvXLc9xEnoxMLBTFdear/pub?gid=1137432932&single=true&output=csv') // ← Ruta absoluta para GitHub Pages
     .then(response => response.text())
     .then(data => {
         // Debug: Ver contenido completo
