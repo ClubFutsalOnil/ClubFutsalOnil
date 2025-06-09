@@ -2,27 +2,23 @@
 let allMatches = [];
 
 // Cargar datos del CSV
-fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQfwS96EPYPBFaHJc80g98zJ8HpMnLjTEf0JDzRCE4tdfpf6EYAMMPoEQ7kKvXLc9xEnoxMLBTFdear/pub?gid=1137432932&single=true&output=csv')
+fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSw0U9CX5LM-QhFZVDROtqcUDm1E-J3vDxpJV-JSLHETk_kZBYB55TH3oC6F98h1EJIScu2sajqjPgI/pub?output=csv') // ← Ruta absoluta para GitHub Pages
     .then(response => response.text())
     .then(data => {
         // Debug: Ver contenido completo
         console.log("Raw Data:", data);
 
-        // Dividir por líneas y limpiar comillas internas
-        const rows = data
-            .trim()
-            .split('\n')
-            .map(row => 
-                row
-                .replace(/^"(.*)"$/, '$1') // Elimina comillas generales
-                .split('","') // Divide evitando comas dentro de celdas
-                .map(cell => cell.replace(/^"(.*)"$/, '$1').trim()) // Limpieza final
-            );
+        // Dividir por líneas y limpiar celdas
+        const rows = data.trim().split("\n")
+            .map(row => row.trim().split(",").map(cell => cell.trim()));
+
+        // Debug: Ver todas las filas parseadas
+        console.log("Parsed Rows:", rows);
 
         const tbody = document.getElementById("results-body");
         const categorySelect = document.getElementById("categoria-select");
 
-        // Saltamos encabezado y filtramos filas válidas (con 6 columnas y no vacías)
+        // Saltamos encabezado y filtramos filas completas
         const matches = rows
             .slice(1)
             .filter(row => row.length === 6 && row[0] !== '');
@@ -30,11 +26,11 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQfwS96EPYPBFaHJc80g98zJ8
         // Debug: Ver solo las filas útiles
         console.log("Valid Matches:", matches);
 
-        // Guardamos globalmente
+        // Guardamos los datos globalmente para filtrar después
         allMatches = matches;
 
         // Extraer categorías únicas y rellenar el dropdown
-        const categories = [...new Set(allMatches.map(match => match[5]))];
+        const categories = [...new Set(matches.map(match => match[5]))];
 
         categories.forEach(cat => {
             const option = document.createElement("option");
@@ -80,6 +76,9 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQfwS96EPYPBFaHJc80g98zJ8
         console.error("Error al cargar el CSV:", error);
         const tbody = document.getElementById("results-body");
         if (tbody) {
-            tbody.innerHTML = "<tr><td colspan='3'>Error al cargar resultados.csv</td></tr>";
+            const tr = document.createElement("tr");
+            tr.innerHTML = "<td colspan='3'>Error al cargar resultados.csv</td>";
+            tbody.innerHTML = "";
+            tbody.appendChild(tr);
         }
     });
