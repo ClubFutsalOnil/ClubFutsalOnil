@@ -2,7 +2,7 @@
 let allMatches = [];
 
 // Cargar datos del CSV
-fetch('/resultados.csv') // ← Ruta absoluta para GitHub Pages
+fetch('resultados.csv') // ← Ruta absoluta para GitHub Pages
     .then(response => response.text())
     .then(data => {
         // Debug: Ver contenido completo
