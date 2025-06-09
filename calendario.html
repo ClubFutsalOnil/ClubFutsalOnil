@@ -42,7 +42,37 @@
       border-radius: 3px;
       width: 100%;
       max-width: 900px;
+      margin: 0 auto 15px auto;
+    }
+
+    /* Navegación bajo logo */
+    .nav-links {
+      max-width: 900px;
+      background: white;
+      border-radius: 8px;
+      padding: 10px 15px;
       margin: 0 auto 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #003366;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background-color: #ffd500;
+      color: #003366;
+      outline: none;
     }
 
     /* Barra filtros */
@@ -175,6 +205,9 @@
         justify-content: center;
         min-width: auto;
       }
+      .nav-links {
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -183,6 +216,13 @@
   <div class="header-container">
     <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
     <div class="yellow-line"></div>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html">Home</a>
+      <a href="equipos.html">Equipos</a>
+      <a href="calendario.html">Calendario</a>
+      <a href="noticias.html">Noticias</a>
+      <a href="elclub.html">El Club</a>
+    </nav>
   </div>
 
   <div class="filter-bar">
