@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CSF ONIL - Futsal Club</title>
     <link rel="stylesheet" href="styles.css" />
+    <style>
+        select {
+            padding: 6px;
+            margin-top: 10px;
+        }
+        .shield-img {
+            width: 24px;
+            height: 24px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- CONTENEDOR SUPERIOR: Logo grande centrado -->
-<div class="top-container">
-    <div class="logo-container">
-        <img src="assets/images/logo/logocfsonil.png" alt="CSF ONIL Logo" class="main-logo">
+    <div class="top-container">
+        <div class="logo-container">
+            <img src="assets/images/logo/logocfsonil.png" alt="CSF ONIL Logo" class="main-logo">
+        </div>
     </div>
-</div>
 
-<div class="white-box-top">
-    <!-- Menú -->
-</div>
-
-    <!-- CUADRO BLANCO SUPERIOR: Solo menú -->
+    <!-- CUADRO BLANCO SUPERIOR: Menú -->
     <div class="white-box-top">
         <nav>
             <img src="assets/images/logo/logocfsonil.png" alt="CSF ONIL Small Logo" class="small-logo">
@@ -36,7 +44,7 @@
         </nav>
     </div>
 
-    <!-- BANNER: Imagen fija o normal -->
+    <!-- BANNER -->
     <section class="banner">
         <div class="banner-content">
             <h1></h1>
@@ -47,56 +55,120 @@
     <!-- CUADRO BLANCO INFERIOR: Resultados, categorías, Únete -->
     <div class="white-box-bottom">
 
-        <!-- === SECCIÓN DE RESULTADOS Y CUADROS LATERALES === -->
+        <section class="results-section">
 
-        <!-- === SECCIÓN DE RESULTADOS Y CUADROS LATERALES === -->
-<section class="results-section">
+            <!-- Categorías fijas a la izquierda -->
+            <div class="left-box">
+                <h2>CATEGORÍAS</h2>
+                <ul>
+                    <li>Benjamín</li>
+                    <li>Alevín</li>
+                    <li>Infantil</li>
+                    <li>Senior</li>
+                </ul>
+            </div>
 
-    <!-- Categorías -->
-    <div class="left-box">
-        <h2>CATEGORÍAS</h2>
-        <ul>
-            <li>Benjamín</li>
-            <li>Alevín</li>
-            <li>Infantil</li>
-            <li>Senior</li>
-        </ul>
+            <!-- Resultados (tabla) -->
+            <div class="center-box" id="results-table">
+                <h2>RESULTADOS</h2>
+
+                <!-- Filtro de categoría dinámico -->
+                <label for="categoria-select">Filtrar por categoría:</label>
+                <select id="categoria-select">
+                    <option value="">Todas</option>
+                </select>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Local</th>
+                            <th>Resultado</th>
+                            <th>Visitante</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body">
+                        <tr><td colspan="3">Cargando datos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Unete al club -->
+            <div class="right-box">
+                <h2>ÚNETE AL CLUB</h2>
+                <p>¿Quieres formar parte del CFS ONIL? Únete a nosotros y forma parte de nuestra historia.</p>
+                <button class="join-button">Solicita Información</button>
+            </div>
+
+        </section>
     </div>
 
-    <!-- Resultados (tabla) -->
-    <div class="center-box" id="results-table">
-        <h2>RESULTADOS</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Local</th>
-                    <th>Resultado</th>
-                    <th>Visitante</th>
-                </tr>
-            </thead>
-            <tbody id="results-body">
-                <tr><td colspan="3">Cargando datos...</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Unete al club -->
-    <div class="right-box">
-        <h2>ÚNETE AL CLUB</h2>
-        <p>¿Quieres formar parte del CFS ONIL? Únete a nosotros y forma parte de nuestra historia.</p>
-        <button class="join-button">Solicita Información</button>
-    </div>
-
-</section>
-
-   
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 CFS ONIL. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script al final -->
-    <script src="script.js"></script>
+    <!-- Script integrado -->
+   <script>
+    let allMatches = [];
+
+    fetch('https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById("results-body");
+            const categorySelect = document.getElementById("categoria-select");
+
+            allMatches = data;
+
+            // Filtrar categorías válidas y únicas
+            const categories = [...new Set(allMatches.map(match => match["Categoría"]).filter(cat => cat && cat.trim() !== ""))];
+
+            // Limpiar select y agregar opción "Todas"
+            categorySelect.innerHTML = '<option value="">Todas</option>';
+            categories.forEach(cat => {
+                const option = document.createElement("option");
+                option.value = cat;
+                option.textContent = cat;
+                categorySelect.appendChild(option);
+            });
+
+            function displayMatches(filteredMatches) {
+                tbody.innerHTML = "";
+                if (filteredMatches.length === 0) {
+                    tbody.innerHTML = "<tr><td colspan='3'>No hay partidos en esta categoría</td></tr>";
+                    return;
+                }
+
+                filteredMatches.forEach(match => {
+                    const hora = match["Hora"] || match["Resultado"] || "N/A";
+                    const escudoLocal = match["Escudo Local"] || "";
+                    const escudoVisitante = match["Escudo Visitante"] || "";
+
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>${escudoLocal ? `<img src="${escudoLocal}" alt="${match["Local"]}" class="shield-img">` : ""}${match["Local"] || "N/D"}</td>
+                        <td>${hora}</td>
+                        <td>${escudoVisitante ? `<img src="${escudoVisitante}" alt="${match["Visitante"]}" class="shield-img">` : ""}${match["Visitante"] || "N/D"}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            displayMatches(allMatches);
+
+            categorySelect.addEventListener("change", function () {
+                const selectedCategory = this.value;
+                const filtered = selectedCategory
+                    ? allMatches.filter(match => match["Categoría"] === selectedCategory)
+                    : allMatches;
+                displayMatches(filtered);
+            });
+        })
+        .catch(error => {
+            console.error("Error al cargar la API:", error);
+            document.getElementById("results-body").innerHTML = "<tr><td colspan='3'>Error al cargar los datos</td></tr>";
+        });
+</script>
+
 
 </body>
 </html>
