@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendario CFS ONIL - Futsal</title>
+  <style>
+    /* Fondo con imagen */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #f0f0f0;
+      background: url('assets/images/fondoweb.png') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Contenedor para el logo y línea amarilla */
+    .header-container {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Logo arriba */
+    .main-logo {
+      max-width: 220px;
+      height: auto;
+      margin: 0 auto 8px auto;
+      display: block;
+    }
+
+    /* Línea amarilla corporativa */
+    .yellow-line {
+      height: 5px;
+      background-color: #ffd500; /* Amarillo corporativo */
+      border-radius: 3px;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    /* Barra filtros */
+    .filter-bar {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .filter-bar label {
+      margin-right: 6px;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    select {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background: rgba(0, 74, 153, 0.85);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      min-width: 160px;
+    }
+    select:hover, select:focus {
+      background: #0071e3;
+      outline: none;
+    }
+
+    /* Calendario */
+    .calendario-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+      gap: 20px;
+      width: 100%;
+    }
+
+    .partido-card {
+      background-color: rgba(0, 51, 102, 0.8);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: background-color 0.3s ease;
+    }
+    .partido-card:hover {
+      background-color: rgba(0, 51, 102, 0.95);
+    }
+
+    .partido-header {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ffd500;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .partido-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .equipo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #fff;
+      min-width: 120px;
+    }
+    .equipo.local {
+      justify-content: flex-start;
+    }
+    .equipo.visitante {
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .logo-equipo {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.6);
+      background: #003366;
+    }
+
+    .resultado {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffd500;
+      min-width: 60px;
+      text-align: center;
+      user-select: none;
+    }
+
+    .loading-message, .error-message {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffd500;
+      padding: 40px 0;
+      grid-column: 1/-1;
+    }
+
+    @media (max-width: 480px) {
+      .filter-bar {
+        flex-direction: column;
+        align-items: center;
+      }
+      .partido-body {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .equipo.local, .equipo.visitante {
+        justify-content: center;
+        min-width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-container">
+    <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
+    <div class="yellow-line"></div>
+  </div>
+
+  <div class="filter-bar">
+    <label for="categoria-select">Selecciona una categoría:</label>
+    <select id="categoria-select">
+      <option value="">Todas</option>
+    </select>
+
+    <label for="jornada-select">Selecciona jornada:</label>
+    <select id="jornada-select">
+      <option value="">Todas</option>
+    </select>
+  </div>
+
+  <section class="calendario-container" id="calendario">
+    <p class="loading-message">Selecciona una jornada para cargar los partidos.</p>
+  </section>
+
+  <script>
+    const baseUrl = 'https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec';
+
+    const calendarioContainer = document.getElementById('calendario');
+    const categoriaSelect = document.getElementById('categoria-select');
+    const jornadaSelect = document.getElementById('jornada-select');
+
+    let allMatches = [];
+
+    // Crear opciones jornadas 1 a 30
+    for (let i = 1; i <= 30; i++) {
+      const option = document.createElement('option');
+      option.value = `hoja${i}`;
+      option.textContent = `Jornada ${i}`;
+      jornadaSelect.appendChild(option);
+    }
+
+    function crearPartidoCard(match) {
+      const card = document.createElement('div');
+      card.className = 'partido-card';
+
+      const jornada = match['Jornada'] || 'Jornada X';
+      const fecha = match['Fecha'] || 'Fecha X';
+      const local = match['Local'] || 'Local';
+      const visitante = match['Visitante'] || 'Visitante';
+      const resultado = match['Resultado'] || '';
+      const escudoLocal = match['Escudo Local'] || '';
+      const escudoVisitante = match['Escudo Visitante'] || '';
+
+      card.innerHTML = `
+        <div class="partido-header">
+          <span>${jornada}</span> <span>${fecha}</span>
+        </div>
+        <div class="partido-body">
+          <div class="equipo local">
+            <img src="${escudoLocal}" alt="${local}" class="logo-equipo" />
+            <span>${local}</span>
+          </div>
+          <div class="resultado"><strong>${resultado}</strong></div>
+          <div class="equipo visitante">
+            <span>${visitante}</span>
+            <img src="${escudoVisitante}" alt="${visitante}" class="logo-equipo" />
+          </div>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function mostrarPartidos(matches) {
+      calendarioContainer.innerHTML = '';
+      if (matches.length === 0) {
+        calendarioContainer.innerHTML = `<p class="loading-message">No hay partidos para mostrar.</p>`;
+        return;
+      }
+
+      matches.forEach(match => {
+        const card = crearPartidoCard(match);
+        calendarioContainer.appendChild(card);
+      });
+    }
+
+    function cargarDatosPorJornada(jornadaSheet) {
+      if (!jornadaSheet) {
+        calendarioContainer.innerHTML = '<p class="loading-message">Selecciona una jornada para cargar los partidos.</p>';
+        categoriaSelect.innerHTML = '<option value="">Todas</option>'; // Reset categorías
+        return;
+      }
+
+      calendarioContainer.innerHTML = '<p class="loading-message">Cargando partidos...</p>';
+      categoriaSelect.innerHTML = '<option value="">Todas</option>'; // Reset categorías
+
+      fetch(`${baseUrl}?sheet=${jornadaSheet}`)
+        .then(res => res.json())
+        .then(data => {
+          allMatches = data;
+
+          // Obtener categorías únicas para esta jornada
+          const categorias = [...new Set(allMatches.map(m => m['Categoría']).filter(c => c))];
+          categorias.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat;
+            option.textContent = cat;
+            categoriaSelect.appendChild(option);
+          });
+
+          mostrarPartidos(allMatches);
+        })
+        .catch(err => {
+          calendarioContainer.innerHTML = `<p class="error-message">Error al cargar los partidos. Intenta recargar.</p>`;
+          console.error(err);
+        });
+    }
+
+    function filtrarPorCategoria() {
+      const cat = categoriaSelect.value;
+
+      const filtrados = cat
+        ? allMatches.filter(match => match['Categoría'] === cat)
+        : allMatches;
+
+      mostrarPartidos(filtrados);
+    }
+
+    jornadaSelect.addEventListener('change', () => {
+      cargarDatosPorJornada(jornadaSelect.value);
+      categoriaSelect.value = ''; // Reset categoría al cambiar jornada
+    });
+
+    categoriaSelect.addEventListener('change', filtrarPorCategoria);
+  </script>
+
+</body>
+</html>
