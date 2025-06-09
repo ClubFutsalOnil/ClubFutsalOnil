@@ -1,0 +1,298 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url("assets/images/fondoweb.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125%;
+    height: 125%;
+    overflow-x: hidden;
+}
+
+/* === TOP CONTAINER: Cuadro superior con logo transparente === */
+.top-container {
+    position: relative;
+    width: 100%; /* Ancho completo */
+    height: 200px; /* Altura ajustable desde aquí */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent; /* Sin fondo */
+    z-index: 2;
+}
+
+/* Contenedor del logo grande */
+.logo-container {
+    width: 200px; /* Tamaño del logo */
+    height: auto;
+    background-color: transparent; /* Elimina fondo blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed; /* Fijo en pantalla */
+    top: 20px;
+    left: center;
+    z-index: 3; /* Para que esté por encima de otros elementos si es necesario */
+}
+
+/* Logo grande */
+.main-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* === WHITE BOX: Cuadro blanco debajo del banner === */
+.white-box {
+    position: relative;
+    background-color: white;
+    width: 80%; /* Ajustable */
+    max-width: 1200px; /* Límite máximo */
+    margin: 0 auto 400px; /* Centrado horizontal + margen inferior */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === NAV: Barra de navegación === */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+}
+
+.small-logo {
+    width: 64px;
+    background-color: transparent; /* Elimina fondo */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 14.4px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a.active {
+    color: #FFD700;
+    border-bottom: 2px solid #FFD700;
+}
+
+.nav-buttons button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+/* === BANNER: Sección con imagen de fútbol sala === */
+.banner {
+    position: fixed; /* Fijo en la pantalla */
+    top: 60;
+    left: 0;
+    width: 110%;
+    height: 40vh; /* Ocupa el 100% del alto visible de la pantalla */
+    background-image: url("assets/images/bannerfutsal.jpg");
+    background-size: cover;
+    background-position: -100px;
+    background-attachment: fixed; /* Hace que la imagen esté fija al scroll */
+    background-repeat: no-repeat;
+    display: fix;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Contenido dentro del banner */
+.banner-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 100px;
+}
+
+.banner-content h1 {
+    font-size: 38.4px;
+}
+
+.banner-content h2 {
+    font-size: 28.8px;
+}
+
+.live-score {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.play-button img {
+    width: 40px;
+    height: 40px;
+}
+
+/* === MAIN CONTENT: Tarjetas informativas === */
+.main-content {
+    background-color: white;
+    padding: 32px;
+    text-align: center;
+}
+
+.info-cards,
+.additional-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(33% - 16px);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h3 {
+    margin: 8px 0;
+    font-size: 19.2px;
+}
+
+.card p {
+    font-size: 12.8px;
+    color: #666;
+}
+
+/* === FOOTER: Pie de página === */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 16px;
+}
+
+/* === RESULTS SECTION: Sección de resultados y cuadros laterales === */
+.results-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.left-box,
+.right-box,
+.center-box {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 300px;
+    min-width: 280px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    text-align: center;
+}
+
+.left-box h2,
+.center-box h2,
+.right-box h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Tabla de resultados */
+.center-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.center-box th,
+.center-box td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.join-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.join-button:hover {
+    background-color: #0056b3;
+}
+
+/* === TABLA DE RESULTADOS === */
+.shield-img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
