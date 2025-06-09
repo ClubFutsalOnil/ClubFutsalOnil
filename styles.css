@@ -22,7 +22,7 @@ body {
 
 /* === TOP CONTAINER: Cuadro superior con logo transparente === */
 .top-container {
-    position: relative;
+    position: top;
     width: 100%;
     height: 200px;
     display: flex;
