@@ -1,36 +1,18 @@
-// Variables globales
-let allMatches = [];
-
-// Cargar datos del CSV
-fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSw0U9CX5LM-QhFZVDROtqcUDm1E-J3vDxpJV-JSLHETk_kZBYB55TH3oC6F98h1EJIScu2sajqjPgI/pub?output=csv') // ← Ruta absoluta para GitHub Pages
+fetch('resultados.csv')
     .then(response => response.text())
     .then(data => {
-        // Debug: Ver contenido completo
-        console.log("Raw Data:", data);
-
-        // Dividir por líneas y limpiar celdas
-        const rows = data.trim().split("\n")
-            .map(row => row.trim().split(",").map(cell => cell.trim()));
-
-        // Debug: Ver todas las filas parseadas
-        console.log("Parsed Rows:", rows);
-
+        const rows = data.trim().split('\n').map(row => row.split(',').map(cell => cell.trim()));
         const tbody = document.getElementById("results-body");
         const categorySelect = document.getElementById("categoria-select");
 
-        // Saltamos encabezado y filtramos filas completas
-        const matches = rows
-            .slice(1)
-            .filter(row => row.length === 6 && row[0] !== '');
+        // Saltamos encabezado
+        const matches = rows.slice(1).filter(row => row.length >= 6 && row[0] !== '');
 
-        // Debug: Ver solo las filas útiles
-        console.log("Valid Matches:", matches);
-
-        // Guardamos los datos globalmente para filtrar después
+        // Guardamos globalmente
         allMatches = matches;
 
-        // Extraer categorías únicas y rellenar el dropdown
-        const categories = [...new Set(matches.map(match => match[5]))];
+        // Extraer categorías únicas
+        const categories = [...new Set(allMatches.map(match => match[5]))];
 
         categories.forEach(cat => {
             const option = document.createElement("option");
@@ -39,7 +21,6 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSw0U9CX5LM-QhFZVDROtqcUD
             categorySelect.appendChild(option);
         });
 
-        // Función para mostrar partidos
         function displayMatches(filteredMatches) {
             tbody.innerHTML = "";
             if (filteredMatches.length === 0) {
@@ -60,10 +41,8 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSw0U9CX5LM-QhFZVDROtqcUD
             });
         }
 
-        // Mostrar todos al cargar
         displayMatches(allMatches);
 
-        // Evento al cambiar categoría
         categorySelect.addEventListener("change", function () {
             const selectedCategory = this.value;
             const filtered = selectedCategory
@@ -73,12 +52,5 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSw0U9CX5LM-QhFZVDROtqcUD
         });
     })
     .catch(error => {
-        console.error("Error al cargar el CSV:", error);
-        const tbody = document.getElementById("results-body");
-        if (tbody) {
-            const tr = document.createElement("tr");
-            tr.innerHTML = "<td colspan='3'>Error al cargar resultados.csv</td>";
-            tbody.innerHTML = "";
-            tbody.appendChild(tr);
-        }
+        console.error("Error al cargar CSV:", error);
     });

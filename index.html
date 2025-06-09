@@ -6,6 +6,7 @@
     <title>CSF ONIL - Futsal Club</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
     <!-- CONTENEDOR SUPERIOR: Logo grande centrado -->
@@ -47,48 +48,46 @@
     <div class="white-box-bottom">
 
         <!-- === SECCIÓN DE RESULTADOS Y CUADROS LATERALES === -->
-        <div class="filter-section">
-            <label for="categoria-select">Selecciona una categoría:</label>
-            <select id="categoria-select">
-                <option value="">Todas</option>
-            </select>
-        </div>
 
-        <section class="results-section">
-            <div class="left-box">
-                <h2>CATEGORÍAS</h2>
-                <ul>
-                    <li>Benjamín</li>
-                    <li>Alevín</li>
-                    <li>Infantil</li>
-                    <li>Senior</li>
-                </ul>
-            </div>
+        <!-- === SECCIÓN DE RESULTADOS Y CUADROS LATERALES === -->
+<section class="results-section">
 
-            <div class="center-box" id="results-table">
-                <h2>RESULTADOS</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Equipo Local</th>
-                            <th>Resultado</th>
-                            <th>Equipo Visitante</th>
-                        </tr>
-                    </thead>
-                    <tbody id="results-body">
-                        <tr><td colspan="3">Cargando datos...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="right-box">
-                <h2>UNETE AL CLUB</h2>
-                <p>¿Quieres formar parte del CSF ONIL? Únete a nosotros y forma parte de nuestra historia.</p>
-                <button class="join-button">Solicita Información</button>
-            </div>
-        </section>
-
+    <!-- Categorías -->
+    <div class="left-box">
+        <h2>CATEGORÍAS</h2>
+        <ul>
+            <li>Benjamín</li>
+            <li>Alevín</li>
+            <li>Infantil</li>
+            <li>Senior</li>
+        </ul>
     </div>
+
+    <!-- Resultados (tabla) -->
+    <div class="center-box" id="results-table">
+        <h2>RESULTADOS</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Local</th>
+                    <th>Resultado</th>
+                    <th>Visitante</th>
+                </tr>
+            </thead>
+            <tbody id="results-body">
+                <tr><td colspan="3">Cargando datos...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Unete al club -->
+    <div class="right-box">
+        <h2>ÚNETE AL CLUB</h2>
+        <p>¿Quieres formar parte del CSF ONIL? Únete a nosotros y forma parte de nuestra historia.</p>
+        <button class="join-button">Solicita Información</button>
+    </div>
+
+</section>
 
    
     <!-- Footer -->
