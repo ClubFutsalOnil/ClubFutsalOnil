@@ -23,50 +23,49 @@ body {
 /* === TOP CONTAINER: Cuadro superior con logo transparente === */
 .top-container {
     position: relative;
-    width: 100%; /* Ancho completo */
-    height: 200px; /* Altura ajustable desde aquí */
+    width: 100%;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Sin fondo */
+    background-color: transparent;
     z-index: 2;
 }
 
-/* Contenedor del logo grande */
 .logo-container {
-    width: 200px; /* Tamaño del logo */
+    width: 200px;
     height: auto;
-    background-color: transparent; /* Elimina fondo blanco */
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    position: fixed; /* Fijo en pantalla */
+    position: fixed;
     top: 20px;
-    left: center;
-    z-index: 3; /* Para que esté por encima de otros elementos si es necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
 }
 
-/* Logo grande */
 .main-logo {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* === WHITE BOX: Cuadro blanco debajo del banner === */
-.white-box {
+/* === WHITE BOX TOP: Cuadro blanco superior (menú) === */
+.white-box-top {
     position: relative;
     background-color: white;
-    width: 80%; /* Ajustable */
-    max-width: 1200px; /* Límite máximo */
-    margin: 0 auto 400px; /* Centrado horizontal + margen inferior */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 0px;
     padding: 20px;
-    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
-/* === NAV: Barra de navegación === */
+/* Navegación */
 nav {
     display: flex;
     justify-content: space-between;
@@ -76,7 +75,7 @@ nav {
 
 .small-logo {
     width: 64px;
-    background-color: transparent; /* Elimina fondo */
+    background-color: transparent;
 }
 
 nav ul {
@@ -109,17 +108,14 @@ nav ul li a.active {
 
 /* === BANNER: Sección con imagen de fútbol sala === */
 .banner {
-    position: fixed; /* Fijo en la pantalla */
-    top: 60;
-    left: 0;
-    width: 110%;
-    height: 40vh; /* Ocupa el 100% del alto visible de la pantalla */
+    position: relative;
+    width: 100%;
+    height: 50vh;
     background-image: url("assets/images/bannerfutsal.jpg");
     background-size: cover;
-    background-position: -100px;
-    background-attachment: fixed; /* Hace que la imagen esté fija al scroll */
+    background-position: center;
     background-repeat: no-repeat;
-    display: fix;
+    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
@@ -134,41 +130,82 @@ nav ul li a.active {
     padding: 0 100px;
 }
 
-.banner-content h1 {
-    font-size: 38.4px;
+/* === WHITE BOX BOTTOM: Cuadro blanco inferior (resultados + laterales) === */
+.white-box-bottom {
+    position: relative;
+    background-color: white;
+    width: 90%;
+    max-width: 1200px;
+    margin: 00px auto 0px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.banner-content h2 {
-    font-size: 28.8px;
+/* === FILTRO DE CATEGORÍAS === */
+.filter-section {
+    text-align: center;
+    margin: 20px 0;
 }
 
-.live-score {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    margin-top: 16px;
+.filter-section select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
+/* === TABLA DE RESULTADOS === */
+.center-box table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.center-box th,
+.center-box td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.shield-img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 8px;
     border-radius: 50%;
-    background-color: #007bff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.play-button img {
-    width: 40px;
-    height: 40px;
+/* === CUADROS LATERALES (Categorías / Unete al club) === */
+.results-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.left-box,
+.right-box,
+.center-box {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 300px;
+    min-width: 280px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    text-align: center;
+}
+
+.left-box h2,
+.center-box h2,
+.right-box h2 {
+    color: #007bff;
+    margin-bottom: 15px;
 }
 
 /* === MAIN CONTENT: Tarjetas informativas === */
@@ -222,77 +259,4 @@ footer {
     color: white;
     text-align: center;
     padding: 16px;
-}
-
-/* === RESULTS SECTION: Sección de resultados y cuadros laterales === */
-.results-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 40px 20px;
-    background-color: white;
-    width: 100%;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-}
-
-.left-box,
-.right-box,
-.center-box {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    flex: 1 1 300px;
-    min-width: 280px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: black;
-    text-align: center;
-}
-
-.left-box h2,
-.center-box h2,
-.right-box h2 {
-    color: #007bff;
-    margin-bottom: 15px;
-}
-
-/* Tabla de resultados */
-.center-box table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.center-box th,
-.center-box td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.join-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.join-button:hover {
-    background-color: #0056b3;
-}
-
-/* === TABLA DE RESULTADOS === */
-.shield-img {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 8px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
