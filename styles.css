@@ -13,39 +13,34 @@ body {
     background-position: center;
     background-attachment: fixed;
     color: white;
-    transform: scale(0.8);
-    transform-origin: top left;
-    width: 125%;
-    height: 125%;
     overflow-x: hidden;
 }
 
-/* === TOP CONTAINER: Cuadro superior con logo transparente === */
+/* === TOP CONTAINER: Logo centrado === */
 .top-container {
-    position: top;
     width: 100%;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 190px;
+    position: relative; /* Necesario para que el logo absoluto se posicione dentro */
     background-color: transparent;
-    z-index: 2;
+    z-index: 8;
 }
 
+/* Este es el logo que quieres mover libremente */
 .logo-container {
+    position: absolute;
+    top: 20px; /* Cambia esto para mover verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Corrige el centrado real */
+    
     width: 200px;
     height: auto;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
+    z-index: 10;
 }
+
 
 .main-logo {
     width: 100%;
@@ -53,35 +48,37 @@ body {
     display: block;
 }
 
-/* === WHITE BOX TOP: Cuadro blanco superior (menú) === */
+/* === WHITE BOX TOP: Menú superior blanco === */
 .white-box-top {
-    position: relative;
     background-color: white;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto 0px;
-    padding: 20px;
+  height: 90px; /* Altura fija */
+  padding: 0 20px; /* Solo padding lateral */
+  overflow: hidden; /* Evita que el contenido desborde */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 2;
 }
 
-/* Navegación */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 16px;
+    flex-wrap: wrap;
+    padding: 20px 0 30px; /* más abajo */
 }
 
 .small-logo {
     width: 64px;
-    background-color: transparent;
+    display: block; /* Activamos el logo pequeño */
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 90px;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 nav ul li a {
@@ -104,39 +101,45 @@ nav ul li a.active {
     padding: 8px 16px;
     cursor: pointer;
     margin-left: 16px;
+    font-size: 10px;
 }
 
-/* === BANNER: Sección con imagen de fútbol sala === */
+/* === BANNER: Banner con imagen fija === */
 .banner {
     position: relative;
     width: 100%;
     height: 50vh;
-    background-image: url("assets/images/bannerfutsal.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita deformaciones */
     z-index: 1;
 }
 
-/* Contenido dentro del banner */
 .banner-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
     color: white;
-    z-index: 2;
     max-width: 800px;
-    padding: 0 100px;
+    padding: 0 20px;
 }
 
-/* === WHITE BOX BOTTOM: Cuadro blanco inferior (resultados + laterales) === */
+/* === WHITE BOX BOTTOM: Cuadro blanco inferior === */
 .white-box-bottom {
-    position: relative;
     background-color: white;
     width: 90%;
     max-width: 1200px;
-    margin: 00px auto 0px;
+    margin: 0px auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -153,66 +156,8 @@ nav ul li a.active {
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
-}
-
-/* === TABLA DE RESULTADOS === */
-.center-box table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.center-box th,
-.center-box td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.shield-img {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 8px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* === CUADROS LATERALES (Categorías / Unete al club) === */
-/* === RESULTS SECTION: Sección completa de resultados y laterales === */
-.results-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 40px 20px;
-    background-color: white;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.left-box,
-.right-box,
-.center-box {
-    flex: 1 1 280px; /* Tamaño mínimo */
-    min-width: 280px;
-    max-width: 350px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: black;
-}
-
-.left-box h2,
-.center-box h2,
-.right-box h2 {
-    color: #007bff;
-    margin-bottom: 15px;
+    max-width: 300px;
 }
 
 /* === TABLA DE RESULTADOS === */
@@ -239,6 +184,42 @@ nav ul li a.active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* === CUADROS LATERALES (Categorías / Únete al club) === */
+.results-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 0;
+    background-color: white;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.left-box,
+.right-box,
+.center-box {
+    flex: 1 1 280px;
+    min-width: 280px;
+    max-width: 350px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: black;
+}
+
+.left-box h2,
+.center-box h2,
+.right-box h2 {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
 .join-button {
     background-color: #007bff;
     color: white;
@@ -253,7 +234,6 @@ nav ul li a.active {
 .join-button:hover {
     background-color: #0056b3;
 }
-
 
 /* === MAIN CONTENT: Tarjetas informativas === */
 .main-content {
@@ -277,6 +257,7 @@ nav ul li a.active {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: calc(33% - 16px);
     transition: transform 0.3s ease;
+    margin: 10px;
 }
 
 .card:hover {
@@ -308,4 +289,52 @@ footer {
     padding: 16px;
 }
 
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .results-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-box,
+    .right-box,
+    .center-box {
+        width: 100%;
+    }
+
+    .shield-img {
+        display: none;
+    }
+
+    .nav-buttons button {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .logo-container {
+        width: 150px;
+    }
+
+    .main-logo {
+        width: 100%;
+    }
+}

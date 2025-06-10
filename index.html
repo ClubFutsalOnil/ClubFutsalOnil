@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CSF ONIL - Futsal Club</title>
+    <title>CFS ONIL - Futsal Club</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
         select {
             padding: 6px;
             margin-top: 10px;
+            width: 100%;
+            max-width: 250px;
         }
+
         .shield-img {
             width: 24px;
             height: 24px;
@@ -24,29 +27,41 @@
     <!-- CONTENEDOR SUPERIOR: Logo grande centrado -->
     <div class="top-container">
         <div class="logo-container">
-            <img src="assets/images/logo/logocfsonil.png" alt="CSF ONIL Logo" class="main-logo">
+            <img src="assets/images/logo/logocfsonil.png" alt="CFS ONIL Logo" class="main-logo">
         </div>
     </div>
 
     <!-- CUADRO BLANCO SUPERIOR: Menú -->
-    <div class="white-box-top">
-        <nav>
-            <img src="assets/images/logo/logocfsonil.png" alt="CSF ONIL Small Logo" class="small-logo">
-    <ul>
-        <li><a href="campus.html">Los Campus</a></li>
-        <li><a href="equipos.html">Equipos</a></li>
-        <li><a href="calendario.html">Calendario</a></li>
-        <li><a href="noticias.html">Noticias</a></li>
-        <li><a href="elclub.html">El Club</a></li>
-    </ul>
+    <section class="white-box-top">
+        <nav aria-label="Menú principal">
+            <!-- Logo pequeño a la izquierda -->
+            <div class="nav-left">
+                <a href="index.html">
+                    <img src="assets/images/logo/logocfsonil.png" alt="CFS ONIL Small Logo" class="small-logo">
+                </a>
+            </div>
+
+            <!-- Enlaces del menú -->
+            <ul class="nav-links">
+                <li><a href="campus.html">Los Campus</a></li>
+                <li><a href="equipos.html">Equipos</a></li>
+                <li><a href="calendario.html">Calendario</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="elclub.html">El Club</a></li>
+            </ul>
+
+            <!-- Botón Acceso Club -->
             <div class="nav-buttons">
-                <button class="club-gmb"><a href="#">Acceso Club</a></button>
+                <button class="club-gmb" aria-label="Acceso al área del club">
+                    <a href="#">Acceso Club</a>
+                </button>
             </div>
         </nav>
-    </div>
+    </section>
 
     <!-- BANNER -->
-    <section class="banner">
+    <section class="banner" role="banner">
+        <img src="assets/images/bannerfutsal.jpg" alt="Equipo de fútbol sala en acción" class="banner-image">
         <div class="banner-content">
             <h1></h1>
             <h2></h2>
@@ -54,12 +69,11 @@
     </section>
 
     <!-- CUADRO BLANCO INFERIOR: Resultados, categorías, Únete -->
-    <div class="white-box-bottom">
-
+    <main class="white-box-bottom" aria-label="Contenido principal">
         <section class="results-section">
 
             <!-- Categorías fijas a la izquierda -->
-            <div class="left-box">
+            <aside class="left-box" aria-label="Categorías disponibles">
                 <h2>CATEGORÍAS</h2>
                 <ul>
                     <li>Benjamín</li>
@@ -67,41 +81,41 @@
                     <li>Infantil</li>
                     <li>Senior</li>
                 </ul>
-            </div>
+            </aside>
 
             <!-- Resultados (tabla) -->
-            <div class="center-box" id="results-table">
+            <section class="center-box" id="results-table">
                 <h2>RESULTADOS</h2>
 
                 <!-- Filtro de categoría dinámico -->
                 <label for="categoria-select">Filtrar por categoría:</label>
-                <select id="categoria-select">
+                <select id="categoria-select" aria-controls="results-body">
                     <option value="">Todas</option>
                 </select>
 
-                <table>
+                <table aria-label="Tabla de resultados de partidos">
                     <thead>
                         <tr>
-                            <th>Local</th>
-                            <th>Resultado</th>
-                            <th>Visitante</th>
+                            <th scope="col">Local</th>
+                            <th scope="col">Resultado</th>
+                            <th scope="col">Visitante</th>
                         </tr>
                     </thead>
                     <tbody id="results-body">
                         <tr><td colspan="3">Cargando datos...</td></tr>
                     </tbody>
                 </table>
-            </div>
+            </section>
 
             <!-- Unete al club -->
-            <div class="right-box">
+            <aside class="right-box" aria-label="Únete al club">
                 <h2>ÚNETE AL CLUB</h2>
                 <p>¿Quieres formar parte del CFS ONIL? Únete a nosotros y forma parte de nuestra historia.</p>
-                <button class="join-button">Solicita Información</button>
-            </div>
+                <button class="join-button" aria-label="Solicita información para unirte al club">Solicita Información</button>
+            </aside>
 
         </section>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -109,67 +123,66 @@
     </footer>
 
     <!-- Script integrado -->
-   <script>
-    let allMatches = [];
+    <script>
+        let allMatches = [];
 
-    fetch('https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec')
-        .then(response => response.json())
-        .then(data => {
-            const tbody = document.getElementById("results-body");
-            const categorySelect = document.getElementById("categoria-select");
+        fetch('https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec') 
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById("results-body");
+                const categorySelect = document.getElementById("categoria-select");
 
-            allMatches = data;
+                allMatches = data;
 
-            // Filtrar categorías válidas y únicas
-            const categories = [...new Set(allMatches.map(match => match["Categoría"]).filter(cat => cat && cat.trim() !== ""))];
+                // Filtrar categorías válidas y únicas
+                const categories = [...new Set(allMatches.map(match => match["Categoría"]).filter(cat => cat && cat.trim() !== ""))];
 
-            // Limpiar select y agregar opción "Todas"
-            categorySelect.innerHTML = '<option value="">Todas</option>';
-            categories.forEach(cat => {
-                const option = document.createElement("option");
-                option.value = cat;
-                option.textContent = cat;
-                categorySelect.appendChild(option);
-            });
+                // Limpiar select y agregar opción "Todas"
+                categorySelect.innerHTML = '<option value="">Todas</option>';
+                categories.forEach(cat => {
+                    const option = document.createElement("option");
+                    option.value = cat;
+                    option.textContent = cat;
+                    categorySelect.appendChild(option);
+                });
 
-            function displayMatches(filteredMatches) {
-                tbody.innerHTML = "";
-                if (filteredMatches.length === 0) {
-                    tbody.innerHTML = "<tr><td colspan='3'>No hay partidos en esta categoría</td></tr>";
-                    return;
+                function displayMatches(filteredMatches) {
+                    tbody.innerHTML = "";
+                    if (filteredMatches.length === 0) {
+                        tbody.innerHTML = "<tr><td colspan='3'>No hay partidos en esta categoría</td></tr>";
+                        return;
+                    }
+
+                    filteredMatches.forEach(match => {
+                        const hora = match["Hora"] || match["Resultado"] || "N/A";
+                        const escudoLocal = match["Escudo Local"] || "";
+                        const escudoVisitante = match["Escudo Visitante"] || "";
+
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td>${escudoLocal ? `<img src="${escudoLocal}" alt="${match["Local"]}" class="shield-img">` : ""}${match["Local"] || "N/D"}</td>
+                            <td>${hora}</td>
+                            <td>${escudoVisitante ? `<img src="${escudoVisitante}" alt="${match["Visitante"]}" class="shield-img">` : ""}${match["Visitante"] || "N/D"}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
                 }
 
-                filteredMatches.forEach(match => {
-                    const hora = match["Hora"] || match["Resultado"] || "N/A";
-                    const escudoLocal = match["Escudo Local"] || "";
-                    const escudoVisitante = match["Escudo Visitante"] || "";
+                displayMatches(allMatches);
 
-                    const tr = document.createElement("tr");
-                    tr.innerHTML = `
-                        <td>${escudoLocal ? `<img src="${escudoLocal}" alt="${match["Local"]}" class="shield-img">` : ""}${match["Local"] || "N/D"}</td>
-                        <td>${hora}</td>
-                        <td>${escudoVisitante ? `<img src="${escudoVisitante}" alt="${match["Visitante"]}" class="shield-img">` : ""}${match["Visitante"] || "N/D"}</td>
-                    `;
-                    tbody.appendChild(tr);
+                categorySelect.addEventListener("change", function () {
+                    const selectedCategory = this.value;
+                    const filtered = selectedCategory
+                        ? allMatches.filter(match => match["Categoría"] === selectedCategory)
+                        : allMatches;
+                    displayMatches(filtered);
                 });
-            }
-
-            displayMatches(allMatches);
-
-            categorySelect.addEventListener("change", function () {
-                const selectedCategory = this.value;
-                const filtered = selectedCategory
-                    ? allMatches.filter(match => match["Categoría"] === selectedCategory)
-                    : allMatches;
-                displayMatches(filtered);
+            })
+            .catch(error => {
+                console.error("Error al cargar la API:", error);
+                document.getElementById("results-body").innerHTML = "<tr><td colspan='3'>Error al cargar los datos</td></tr>";
             });
-        })
-        .catch(error => {
-            console.error("Error al cargar la API:", error);
-            document.getElementById("results-body").innerHTML = "<tr><td colspan='3'>Error al cargar los datos</td></tr>";
-        });
-</script>
-
+    </script>
 
 </body>
 </html>
