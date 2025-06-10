@@ -20,18 +20,16 @@ body {
 .top-container {
     width: 100%;
     height: 190px;
-    position: relative; /* Necesario para que el logo absoluto se posicione dentro */
+    position: relative;
     background-color: transparent;
     z-index: 8;
 }
 
-/* Este es el logo que quieres mover libremente */
 .logo-container {
     position: absolute;
-    top: 20px; /* Cambia esto para mover verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translateX(-50%); /* Corrige el centrado real */
-    
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 200px;
     height: auto;
     background-color: transparent;
@@ -40,7 +38,6 @@ body {
     align-items: center;
     z-index: 10;
 }
-
 
 .main-logo {
     width: 100%;
@@ -53,10 +50,10 @@ body {
     background-color: white;
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto 0px;
-  height: 90px; /* Altura fija */
-  padding: 0 20px; /* Solo padding lateral */
-  overflow: hidden; /* Evita que el contenido desborde */
+    margin: 0 auto;
+    height: 90px;
+    padding: 0 20px;
+    overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 2;
 }
@@ -66,12 +63,12 @@ nav {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 20px 0 30px; /* más abajo */
+    padding: 20px 0 30px;
 }
 
 .small-logo {
     width: 64px;
-    display: block; /* Activamos el logo pequeño */
+    display: block;
 }
 
 nav ul {
@@ -117,11 +114,12 @@ nav ul li a.active {
 
 .banner-image {
     position: absolute;
-    top: 0;
+    top: 50%; /* 🔧 Corregido: antes estaba "top: 50;" sin unidad */
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Evita deformaciones */
+    object-fit: cover;
+    transform: translateY(-50%);
     z-index: 1;
 }
 
@@ -139,7 +137,7 @@ nav ul li a.active {
     background-color: white;
     width: 90%;
     max-width: 1200px;
-    margin: 0px auto;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -184,7 +182,7 @@ nav ul li a.active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* === CUADROS LATERALES (Categorías / Únete al club) === */
+/* === CUADROS LATERALES === */
 .results-section {
     display: flex;
     flex-wrap: wrap;
@@ -281,7 +279,7 @@ nav ul li a.active {
     color: #666;
 }
 
-/* === FOOTER: Pie de página === */
+/* === FOOTER === */
 footer {
     background-color: #003366;
     color: white;
@@ -339,13 +337,9 @@ footer {
     }
 }
 
-
-
 /* === SLIDESHOW EN BANNER === */
 .slideshow {
-    position: center;
-    top: 0;
-    left: 50;
+    position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -354,9 +348,11 @@ footer {
 .slide {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 60%;
-    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1080px;
+    height: auto;
+    min-height: 100%;
     object-fit: cover;
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -366,9 +362,4 @@ footer {
 .slide.active {
     opacity: 1;
     z-index: 2;
-}
-
-/* Aseguramos que solo se vea el slideshow */
-.banner-image {
-    display: none !important;
 }
