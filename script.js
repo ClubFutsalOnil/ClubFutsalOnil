@@ -35,8 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Rutas de las imágenes adicionales para el slideshow
     const slideImages = [
         "assets/images/bannerfutsal.jpg",
-        "assets/images/equipos/senior.jpg",
-        "assets/images/equipos/infantil.jpg"
+        "assets/images/photos/alevin/*.jpg",
+        "assets/images/photos/prebenjamin/*.jpg"
+        "assets/images/photos/senior/*.jpg"
     ];
 
     // Crear contenedor del slideshow
