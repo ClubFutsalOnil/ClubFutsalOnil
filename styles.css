@@ -373,3 +373,53 @@ footer {
   z-index: 1;
 }
 
+
+.top-bar-socials {
+  background: white;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  padding: 5px 0;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center; /* centra el contenido */
+}
+
+.top-bar-socials .content {
+  width: 100%;
+  max-width: 1200px; /* ancho máximo como tu container */
+  display: flex;
+  justify-content: center; /* centra el texto y logos */
+  align-items: center;
+  gap: 25px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #555; /* gris medio para texto */
+}
+
+.top-bar-socials > .content > span {
+  font-size: 18px;
+  color: #555;
+}
+
+.top-bar-socials a {
+  display: inline-block;
+  filter: grayscale(50%) brightness(70%);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.top-bar-socials a:hover {
+  filter: none;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  vertical-align: middle;
+}
+
