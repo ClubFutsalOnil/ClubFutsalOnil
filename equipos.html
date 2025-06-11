@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Campus CFS ONIL - Años</title>
+  <title>Equipos - CFS ONIL</title>
   <style>
-    /* Fondo con imagen */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -19,7 +18,6 @@
       align-items: center;
     }
 
-    /* Contenedor para el logo y línea amarilla */
     .header-container {
       width: 100%;
       max-width: 900px;
@@ -27,7 +25,6 @@
       text-align: center;
     }
 
-    /* Logo arriba */
     .main-logo {
       max-width: 220px;
       height: auto;
@@ -35,17 +32,15 @@
       display: block;
     }
 
-    /* Línea amarilla corporativa */
     .yellow-line {
       height: 5px;
-      background-color: #ffd500; /* Amarillo corporativo */
+      background-color: #ffd500;
       border-radius: 3px;
       width: 100%;
       max-width: 900px;
       margin: 0 auto 15px auto;
     }
 
-    /* Navegación bajo logo */
     .nav-links {
       max-width: 900px;
       background: white;
@@ -75,83 +70,42 @@
       outline: none;
     }
 
-    /* Contenedor general de los campus */
-    .campus-container {
+    .teams-container {
       max-width: 900px;
       width: 100%;
-      margin-bottom: 50px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
-    /* Título de cada año */
-    .campus-year-title {
-      font-size: 1.6rem;
-      font-weight: 800;
+    .team-section {
+      margin-bottom: 30px;
+    }
+
+    .team-title {
+      font-size: 1.4rem;
+      font-weight: bold;
       color: #ffd500;
-      margin-bottom: 15px;
       border-bottom: 2px solid #ffd500;
       padding-bottom: 6px;
+      margin-bottom: 10px;
     }
 
-    /* Link para descargar info e inscripción */
-    .download-link {
-      display: inline-block;
-      margin: 10px 0 20px 0;
-      background: white;
-      color: #003366;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    .download-link:hover,
-    .download-link:focus {
-      background-color: #ffd500;
-      color: #003366;
-      outline: none;
-      cursor: pointer;
+    .team-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #f0f0f0;
     }
 
-    /* Rejilla de fotos */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-
-    .photo-grid img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .photo-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.7);
-    }
-
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .nav-links {
         gap: 15px;
-      }
-      .photo-grid {
-        grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
-        gap: 10px;
-      }
-      .photo-grid img {
-        height: 100px;
       }
     }
   </style>
 </head>
 <body>
-
   <div class="header-container">
     <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
     <div class="yellow-line"></div>
@@ -164,48 +118,41 @@
     </nav>
   </div>
 
-  <main class="campus-container" aria-label="Galería de campus por año">
-
-    <section class="campus-year" id="campus-2025">
-      <h2 class="campus-year-title">Campus 2025</h2>
-      <a href="assets/docs/campus2025-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2025
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2025/photo1.jpg" alt="Campus 2025 foto 1" />
-        <img src="assets/images/campus/2025/photo2.jpg" alt="Campus 2025 foto 2" />
-        <img src="assets/images/campus/2025/photo3.jpg" alt="Campus 2025 foto 3" />
-        <img src="assets/images/campus/2025/photo4.jpg" alt="Campus 2025 foto 4" />
-      </div>
+  <main class="teams-container">
+    <section class="team-section">
+      <h2 class="team-title">Senior</h2>
+      <p class="team-description">
+        El equipo senior compite en la liga federada de la Federación Valenciana, enfrentándose a clubes de toda la comunidad. Con una plantilla consolidada, es el equipo referencia del club.
+      </p>
     </section>
 
-    <section class="campus-year" id="campus-2024">
-      <h2 class="campus-year-title">Campus 2024</h2>
-      <a href="assets/docs/campus2024-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2024
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2024/photo1.jpg" alt="Campus 2024 foto 1" />
-        <img src="assets/images/campus/2024/photo2.jpg" alt="Campus 2024 foto 2" />
-        <img src="assets/images/campus/2024/photo3.jpg" alt="Campus 2024 foto 3" />
-        <img src="assets/images/campus/2024/photo4.jpg" alt="Campus 2024 foto 4" />
-      </div>
+    <section class="team-section">
+      <h2 class="team-title">Juvenil</h2>
+      <p class="team-description">
+        Nuestro equipo juvenil participa en la liga provincial, donde los jóvenes talentos siguen formándose y ganando experiencia competitiva para llegar al primer equipo.
+      </p>
     </section>
 
-    <section class="campus-year" id="campus-2023">
-      <h2 class="campus-year-title">Campus 2023</h2>
-      <a href="assets/docs/campus2023-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2023
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2023/photo1.jpg" alt="Campus 2023 foto 1" />
-        <img src="assets/images/campus/2023/photo2.jpg" alt="Campus 2023 foto 2" />
-        <img src="assets/images/campus/2023/photo3.jpg" alt="Campus 2023 foto 3" />
-        <img src="assets/images/campus/2023/photo4.jpg" alt="Campus 2023 foto 4" />
-      </div>
+    <section class="team-section">
+      <h2 class="team-title">Cadete</h2>
+      <p class="team-description">
+        Los cadetes compiten a nivel comarcal, trabajando en aspectos técnicos y tácticos fundamentales para su desarrollo.
+      </p>
     </section>
 
+    <section class="team-section">
+      <h2 class="team-title">Infantil</h2>
+      <p class="team-description">
+        El equipo infantil juega en competiciones escolares y torneos amistosos, centándose en la formación integral y el trabajo en equipo.
+      </p>
+    </section>
+
+    <section class="team-section">
+      <h2 class="team-title">Prebenjamín / Benjamín / Alevín</h2>
+      <p class="team-description">
+        Estas categorías base introducen a los niños en el fútbol sala con actividades lúdicas y participación en ligas escolares. Se prioriza la diversión, el aprendizaje y los valores deportivos.
+      </p>
+    </section>
   </main>
-
 </body>
 </html>

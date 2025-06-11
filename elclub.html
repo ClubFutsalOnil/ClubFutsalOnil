@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>El Club - CFS ONIL</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #f0f0f0;
+      background: url('assets/images/fondoweb.png') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-container {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .main-logo {
+      max-width: 220px;
+      height: auto;
+      margin: 0 auto 8px auto;
+      display: block;
+    }
+
+    .yellow-line {
+      height: 5px;
+      background-color: #ffd500;
+      border-radius: 3px;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto 15px auto;
+    }
+
+    .nav-links {
+      max-width: 900px;
+      background: white;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #003366;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background-color: #ffd500;
+      color: #003366;
+      outline: none;
+    }
+
+    .club-container {
+      max-width: 900px;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+
+    .club-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffd500;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffd500;
+      padding-bottom: 6px;
+    }
+
+    .club-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #f0f0f0;
+      margin-bottom: 25px;
+    }
+
+    .club-section-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #ffd500;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      border-left: 5px solid #ffd500;
+      padding-left: 10px;
+    }
+
+    ul.club-values {
+      list-style: square;
+      padding-left: 25px;
+      color: #f0f0f0;
+    }
+
+    .club-img {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .stat-card {
+      background-color: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-card h3 { color: #ffd500; margin-bottom: 8px; }
+    .stat-card p { font-size: 1rem; color: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
+    <div class="yellow-line"></div>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html">Home</a>
+      <a href="equipos.html">Equipos</a>
+      <a href="calendario.html">Calendario</a>
+      <a href="noticias.html">Noticias</a>
+      <a href="elclub.html">El Club</a>
+    </nav>
+  </div>
+
+  <main class="club-container">
+    <h1 class="club-title">Sobre el Club</h1>
+    <p class="club-text">
+      El Club de Fútbol Sala Onil nació de la iniciativa de un grupo de personas apasionadas por el deporte, con el objetivo de ofrecer una alternativa deportiva a la juventud de Onil
+    </p>
+
+    <img src="assets/images/elclub/equipo-historico.jpg" alt="Foto histórica del equipo" class="club-img" />
+
+    <h2 class="club-section-title">Trayectoria reciente</h2>
+    <p class="club-text">
+      En 2023 y 2024, el equipo senior demostró un alto nivel competitivo, finalizando imbatido en casa durante gran parte de la temporada y optando al ascenso.
+    </p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Equipo Senior</h3><p>Líder regional en 2023-24</p>
+      </div>
+      <div class="stat-card">
+        <h3>Futsal Femenino</h3><p>Proyecto en desarrollo desde 2024</p>
+      </div>
+      <div class="stat-card">
+        <h3>Campus y Eventos</h3><p>Campus de verano, torneos y jornadas escolares</p>
+      </div>
+    </div>
+
+    <h2 class="club-section-title">Nuestra Misión</h2>
+    <p class="club-text">
+      Formar personas mediante el deporte, inculcando valores como esfuerzo, respeto y trabajo en equipo. Fomentamos un entorno sano e inclusivo.
+    </p>
+
+    <h2 class="club-section-title">Valores que nos definen</h2>
+    <ul class="club-values">
+      <li>Compromiso y formación</li>
+      <li>Respeto y juego limpio</li>
+      <li>Trabajo en equipo</li>
+      <li>Participación comunitaria</li>
+    </ul>
+
+    <h2 class="club-section-title">Instalaciones</h2>
+    <p class="club-text">
+      Nuestro club entrena y compite en el Pabellón Municipal de Onil. También se organizan actividades en instalaciones escolares y eventos externos colaborativos.
+    </p>
+  </main>
+</body>
+</html>

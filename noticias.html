@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Campus CFS ONIL - Años</title>
+  <title>Noticias - CFS ONIL</title>
   <style>
-    /* Fondo con imagen */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -19,7 +18,6 @@
       align-items: center;
     }
 
-    /* Contenedor para el logo y línea amarilla */
     .header-container {
       width: 100%;
       max-width: 900px;
@@ -27,7 +25,6 @@
       text-align: center;
     }
 
-    /* Logo arriba */
     .main-logo {
       max-width: 220px;
       height: auto;
@@ -35,17 +32,15 @@
       display: block;
     }
 
-    /* Línea amarilla corporativa */
     .yellow-line {
       height: 5px;
-      background-color: #ffd500; /* Amarillo corporativo */
+      background-color: #ffd500;
       border-radius: 3px;
       width: 100%;
       max-width: 900px;
       margin: 0 auto 15px auto;
     }
 
-    /* Navegación bajo logo */
     .nav-links {
       max-width: 900px;
       background: white;
@@ -75,83 +70,60 @@
       outline: none;
     }
 
-    /* Contenedor general de los campus */
-    .campus-container {
+    .news-container {
       max-width: 900px;
       width: 100%;
-      margin-bottom: 50px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
-    /* Título de cada año */
-    .campus-year-title {
-      font-size: 1.6rem;
+    .news-title {
+      font-size: 1.8rem;
       font-weight: 800;
       color: #ffd500;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       border-bottom: 2px solid #ffd500;
       padding-bottom: 6px;
     }
 
-    /* Link para descargar info e inscripción */
-    .download-link {
-      display: inline-block;
-      margin: 10px 0 20px 0;
-      background: white;
-      color: #003366;
-      font-weight: 700;
-      padding: 8px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: none;
-    }
-    .download-link:hover,
-    .download-link:focus {
-      background-color: #ffd500;
-      color: #003366;
-      outline: none;
-      cursor: pointer;
+    .news-item {
+      margin-bottom: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
     }
 
-    /* Rejilla de fotos */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-      gap: 15px;
-      margin-bottom: 40px;
+    .news-item h3 {
+      font-size: 1.3rem;
+      color: #ffd500;
+      margin-bottom: 10px;
     }
 
-    .photo-grid img {
+    .news-item p {
+      color: #f0f0f0;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .news-item img {
       width: 100%;
-      height: 140px;
+      max-height: 250px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .photo-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.7);
+      border-radius: 8px;
+      margin: 10px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .nav-links {
         gap: 15px;
-      }
-      .photo-grid {
-        grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
-        gap: 10px;
-      }
-      .photo-grid img {
-        height: 100px;
       }
     }
   </style>
 </head>
 <body>
-
   <div class="header-container">
     <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
     <div class="yellow-line"></div>
@@ -164,48 +136,40 @@
     </nav>
   </div>
 
-  <main class="campus-container" aria-label="Galería de campus por año">
+  <main class="news-container">
+    <h1 class="news-title">Noticias del Club</h1>
 
-    <section class="campus-year" id="campus-2025">
-      <h2 class="campus-year-title">Campus 2025</h2>
-      <a href="assets/docs/campus2025-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2025
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2025/photo1.jpg" alt="Campus 2025 foto 1" />
-        <img src="assets/images/campus/2025/photo2.jpg" alt="Campus 2025 foto 2" />
-        <img src="assets/images/campus/2025/photo3.jpg" alt="Campus 2025 foto 3" />
-        <img src="assets/images/campus/2025/photo4.jpg" alt="Campus 2025 foto 4" />
-      </div>
-    </section>
+    <div class="news-item">
+      <h3>Inscripciones abiertas para el Campus de Verano 2025</h3>
+      <img src="assets/images/noticias/campus2025.jpg" alt="Campus verano 2025">
+      <p>Ya puedes apuntarte al campus de fútbol sala del verano 2025. Entrenamientos, juegos, piscina y mucha diversión para niños y niñas de 6 a 16 años. Plazas limitadas.</p>
+    </div>
 
-    <section class="campus-year" id="campus-2024">
-      <h2 class="campus-year-title">Campus 2024</h2>
-      <a href="assets/docs/campus2024-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2024
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2024/photo1.jpg" alt="Campus 2024 foto 1" />
-        <img src="assets/images/campus/2024/photo2.jpg" alt="Campus 2024 foto 2" />
-        <img src="assets/images/campus/2024/photo3.jpg" alt="Campus 2024 foto 3" />
-        <img src="assets/images/campus/2024/photo4.jpg" alt="Campus 2024 foto 4" />
-      </div>
-    </section>
+    <div class="news-item">
+      <h3>Prebenjamines jugarán un triangular con el serelles de Alcoy.</h3>
 
-    <section class="campus-year" id="campus-2023">
-      <h2 class="campus-year-title">Campus 2023</h2>
-      <a href="assets/docs/campus2023-info-inscripcion.pdf" download class="download-link">
-        📥 Descargar info e inscripción Campus 2023
-      </a>
-      <div class="photo-grid">
-        <img src="assets/images/campus/2023/photo1.jpg" alt="Campus 2023 foto 1" />
-        <img src="assets/images/campus/2023/photo2.jpg" alt="Campus 2023 foto 2" />
-        <img src="assets/images/campus/2023/photo3.jpg" alt="Campus 2023 foto 3" />
-        <img src="assets/images/campus/2023/photo4.jpg" alt="Campus 2023 foto 4" />
-      </div>
-    </section>
+      <h3>CFS Onil Alevin- Futsal Ibi 12.30 h</h3>
+
+      <img src="assets/images/noticias/amistoso.jpg" alt="Partido amistoso">
+      <p>Los partidos serán de 30 minutos.</p>
+
+      <p>Serelles - CFS Onil  Prebenjamín A 10:00 h</p>
+
+      <p>Serelles- CFS Onil Prebenjamín B 10.30 h</p>
+
+      <p>CFS Onil Querubines - San Juan y San Pablo 11.00h</p>
+
+      <p>CFS Onil Prebenjamin A - CFS Onil Prebenjamón B - 11.45</p>
+
+     <p> CFS Onil Alevin- Futsal Ibi 12.30 h.</p>
+    </div>
+
+    <div class="news-item">
+      <h3>Nuevas equipaciones para la temporada 2024-2025</h3>
+      <img src="assets/images/noticias/equipacion.jpg" alt="Equipaciones nuevas">
+      <p>Presentamos el diseño oficial de las nuevas camisetas del club para esta temporada. Modernas, funcionales y con los colores de siempre.</p>
+    </div>
 
   </main>
-
 </body>
 </html>
