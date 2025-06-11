@@ -34,6 +34,11 @@
                 <a href="index.html" class="logo-link">
                     <img src="assets/images/logo/logocfsonil.png" alt="CFS ONIL Logo" class="main-logo">
                 </a>
+                <div class="sponsor-logo-nav">
+                    <span class="sponsor-text">Principales patrocinadores :</span>
+                    <img src="assets/images/patrocinadores/noproblem.jpg" alt="No Problem" class="nav-sponsor-img">
+                    <img src="assets/images/patrocinadores/torriko.jpg" alt="Torriko" class="nav-sponsor-img">
+                </div>
                 <nav aria-label="Menú principal">
                     <ul class="nav-links">
                         <li><a href="campus.html">Los Campus</a></li>
@@ -62,7 +67,6 @@
     </section>
 
     <main class="main-content container" aria-label="Contenido principal">
-
         <section class="featured-news-section">
             <h2 class="section-title">Últimas Noticias</h2>
             <div class="news-grid">
@@ -84,7 +88,7 @@
                     <p>Breve descripción de la noticia. Haz clic para leer más.</p>
                     <a href="noticia-detalle.html" class="read-more-button">Leer más</a>
                 </article>
-                </div>
+            </div>
             <a href="noticias.html" class="view-all-button">Ver todas las noticias</a>
         </section>
 
@@ -130,7 +134,7 @@
                         <label for="categoria-select">Filtrar por categoría:</label>
                         <select id="categoria-select">
                             <option value="">Todas</option>
-                            </select>
+                        </select>
                     </div>
                 </section>
             </div>
@@ -198,7 +202,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Slider de imágenes
             const slides = document.querySelectorAll(".hero-section .slide");
             let currentSlide = 0;
             function showNextSlide() {
@@ -208,7 +211,6 @@
             }
             setInterval(showNextSlide, 5000);
 
-            // Fetch de datos de resultados de Google Sheets
             let allMatches = [];
             fetch('https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec')
                 .then(response => response.json())
@@ -217,7 +219,6 @@
                     const categorySelect = document.getElementById("categoria-select");
 
                     allMatches = data;
-                    // Asegúrate de que los nombres de las categorías son correctos y no vacíos
                     const categories = [...new Set(allMatches.map(match => match["Categoría"]).filter(cat => cat && cat.trim() !== ""))];
 
                     categorySelect.innerHTML = '<option value="">Todas</option>';
@@ -249,7 +250,7 @@
                         });
                     }
 
-                    displayMatches(allMatches); // Mostrar todos al principio
+                    displayMatches(allMatches);
                     categorySelect.addEventListener("change", function () {
                         const selectedCategory = this.value;
                         const filtered = selectedCategory ? allMatches.filter(match => match["Categoría"] === selectedCategory) : allMatches;
@@ -257,11 +258,13 @@
                     });
                 })
                 .catch(error => {
-                    console.error("Error al cargar la API de resultados:", error);
-                    document.getElementById("results-body").innerHTML = "<tr><td colspan='3'>Error al cargar los datos</td></tr>";
+                    console.error("Error al cargar la API:", error);
+                    const tbody = document.getElementById("results-body");
+                    if (tbody) {
+                        tbody.innerHTML = "<tr><td colspan='3'>Error al cargar los datos</td></tr>";
+                    }
                 });
 
-            // Lógica para el menú móvil
             const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
             const navLinks = document.querySelector(".nav-links");
 
