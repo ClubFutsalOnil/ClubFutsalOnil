@@ -1,365 +1,375 @@
-/* Reset básico */
+/* === RESET BÁSICO === */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Estilos generales del body */
+/* === ESTILOS GENERALES === */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-image: url("assets/images/fondoweb.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: white;
-    overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  background: url("assets/images/fondoweb.png") center center / cover fixed no-repeat;
+  color: white;
+  overflow-x: hidden;
 }
 
 /* === TOP CONTAINER: Logo centrado === */
 .top-container {
-    width: 100%;
-    height: 190px;
-    position: relative;
-    background-color: transparent;
-    z-index: 8;
+  width: 100%;
+  height: 190px;
+  position: relative;
+  background: transparent;
+  z-index: 8;
 }
 
 .logo-container {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: auto;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  z-index: 10;
 }
 
 .main-logo {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  display: block;
+  height: auto;
 }
 
-/* === WHITE BOX TOP: Menú superior blanco === */
+/* === MENÚ SUPERIOR BLANCO === */
 .white-box-top {
-    background-color: white;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 90px;
-    padding: 0 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 2;
+  background: white;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 90px;
+  padding: 0 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 20px 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px 0 30px;
 }
 
 .small-logo {
-    width: 64px;
-    display: block;
+  width: 64px;
+  display: block;
 }
 
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
 nav ul li a.active {
-    color: #FFD700;
-    border-bottom: 2px solid #FFD700;
+  color: #FFD700;
+  border-bottom: 2px solid #FFD700;
 }
 
 .nav-buttons button {
-    background-color: #FFD700;
-    color: black;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    margin-left: 16px;
-    font-size: 10px;
+  background: #FFD700;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 16px;
+  font-size: 10px;
 }
 
-/* === BANNER: Banner con imagen fija === */
+/* === BANNER === */
 .banner {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .banner-image {
-    position: absolute;
-    top: 50%; /* 🔧 Corregido: antes estaba "top: 50;" sin unidad */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translateY(-50%);
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 .banner-content {
-    position: absolute;
-    z-index: 2;
-    text-align: center;
-    color: white;
-    max-width: 800px;
-    padding: 0 20px;
+  position: absolute;
+  z-index: 8;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
 }
 
-/* === WHITE BOX BOTTOM: Cuadro blanco inferior === */
+/* Imagen flotante */
+.photo {
+  position: absolute;
+  top: -280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transition: all 0.2s ease;
+}
+
+/* === WHITE BOX BOTTOM === */
 .white-box-bottom {
-    background-color: white;
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* === FILTRO DE CATEGORÍAS === */
 .filter-section {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .filter-section select {
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 300px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px;
 }
 
 /* === TABLA DE RESULTADOS === */
 .center-box table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 .center-box th,
 .center-box td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .shield-img {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    margin-right: 8px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* === CUADROS LATERALES === */
 .results-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 20px;
-    padding: 20px 0;
-    background-color: white;
-    width: 90%;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  padding: 20px 0;
+  background: white;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .left-box,
 .right-box,
 .center-box {
-    flex: 1 1 280px;
-    min-width: 280px;
-    max-width: 350px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: black;
+  flex: 1 1 280px;
+  min-width: 280px;
+  max-width: 350px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: black;
 }
 
 .left-box h2,
 .center-box h2,
 .right-box h2 {
-    color: #007bff;
-    margin-bottom: 15px;
+  color: #007bff;
+  margin-bottom: 15px;
 }
 
 .join-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
 .join-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
-/* === MAIN CONTENT: Tarjetas informativas === */
+/* === TARJETAS INFORMATIVAS === */
 .main-content {
-    background-color: white;
-    padding: 32px;
-    text-align: center;
+  background: white;
+  padding: 32px;
+  text-align: center;
 }
 
 .info-cards,
 .additional-info {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
 }
 
 .card {
-    background-color: #f9f9f9;
-    padding: 16px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(33% - 16px);
-    transition: transform 0.3s ease;
-    margin: 10px;
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: calc(33% - 16px);
+  margin: 10px;
+  transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .card h3 {
-    margin: 8px 0;
-    font-size: 19.2px;
+  margin: 8px 0;
+  font-size: 19.2px;
 }
 
 .card p {
-    font-size: 12.8px;
-    color: #666;
+  font-size: 12.8px;
+  color: #666;
 }
 
 /* === FOOTER === */
 footer {
-    background-color: #003366;
-    color: white;
-    text-align: center;
-    padding: 16px;
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 16px;
 }
 
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 10px;
-    }
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
 
-    nav ul li {
-        margin-bottom: 10px;
-    }
+  nav ul li {
+    margin-bottom: 10px;
+  }
 
-    .results-section {
-        flex-direction: column;
-        align-items: center;
-    }
+  .results-section {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .left-box,
-    .right-box,
-    .center-box {
-        width: 100%;
-    }
+  .left-box,
+  .right-box,
+  .center-box {
+    width: 100%;
+  }
 
-    .shield-img {
-        display: none;
-    }
+  .shield-img {
+    display: none;
+  }
 
-    .nav-buttons button {
-        width: 100%;
-        margin-left: 0;
-    }
+  .nav-buttons button {
+    width: 100%;
+    margin-left: 0;
+  }
 
-    .card {
-        width: 90%;
-    }
+  .card {
+    width: 90%;
+  }
 
-    .logo-container {
-        width: 150px;
-    }
+  .logo-container {
+    width: 150px;
+  }
 
-    .main-logo {
-        width: 100%;
-    }
+  .main-logo {
+    width: 100%;
+  }
 }
 
-/* === SLIDESHOW EN BANNER === */
+/* === SLIDESHOW === */
 .slideshow {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .slide {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1080px;
-    height: auto;
-    min-height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  max-width: none;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
 }
 
 .slide.active {
-    opacity: 1;
-    z-index: 2;
+  opacity: 1;
+  z-index: 1;
 }
+
