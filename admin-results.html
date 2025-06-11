@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrar Resultados - Club Deportivo</title>
-    <link rel="stylesheet" href="styles.css"> <link rel="stylesheet" href="admin-styles.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="main-header">
@@ -12,8 +14,8 @@
             <div class="container top-header-content">
                 <div class="social-links">
                     <span>Síguenos:</span>
-                <a href="#" aria-label="Facebook"><img src="assets/images/socialicons/face.jpg" alt="Facebook" class="social-icon"></a>
-                <a href="#" aria-label="Instagram"><img src="assets/images/socialicons/insta.jpg" alt="Instagram" class="social-icon"></a>
+                    <a href="#" aria-label="Facebook"><img src="assets/images/socialicons/face.jpg" alt="Facebook" class="social-icon"></a>
+                    <a href="#" aria-label="Instagram"><img src="assets/images/socialicons/insta.jpg" alt="Instagram" class="social-icon"></a>
                 </div>
                 <div class="top-header-buttons">
                     <a href="#" class="top-button">Tienda</a>
@@ -69,11 +71,10 @@
                             <div class="form-group team-selection-group">
                                 <div class="selected-team-display">
                                     <img id="selectedHomeShield" src="assets/images/escudos/default.png" alt="Escudo Local" class="selected-shield">
-                                    <span id="selectedHomeTeamName">Selecciona Equipo Local</span>
-                                    <input type="hidden" id="homeTeam" required>
-                                    <input type="hidden" id="homeShield" required>
+                                    <span id="displayedHomeTeamName">Nombre del equipo local</span>
                                 </div>
-                                <button type="button" class="admin-button secondary-button select-team-button" data-target="home">Seleccionar Equipo</button>
+                                <input type="text" id="homeTeamNameInput" placeholder="Introduce el nombre del equipo" required>
+                                <input type="hidden" id="homeTeam" required> <input type="hidden" id="homeShield" value="assets/images/escudos/default.png"> <button type="button" class="admin-button secondary-button select-shield-button" data-target="home">Seleccionar Escudo</button>
                             </div>
                             <div class="form-group">
                                 <label for="homeScore">Goles Local:</label>
@@ -91,7 +92,7 @@
                                     <option value="copa">Copa</option>
                                     <option value="champions">Champions</option>
                                     <option value="amistoso">Amistoso</option>
-                                    </select>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="category">Categoría:</label>
@@ -108,18 +109,18 @@
                             <div class="form-group team-selection-group">
                                 <div class="selected-team-display">
                                     <img id="selectedAwayShield" src="assets/images/escudos/default.png" alt="Escudo Visitante" class="selected-shield">
-                                    <span id="selectedAwayTeamName">Selecciona Equipo Visitante</span>
-                                    <input type="hidden" id="awayTeam" required>
-                                    <input type="hidden" id="awayShield" required>
+                                    <span id="displayedAwayTeamName">Nombre del equipo visitante</span>
                                 </div>
-                                <button type="button" class="admin-button secondary-button select-team-button" data-target="away">Seleccionar Equipo</button>
+                                <input type="text" id="awayTeamNameInput" placeholder="Introduce el nombre del equipo" required>
+                                <input type="hidden" id="awayTeam" required> <input type="hidden" id="awayShield" value="assets/images/escudos/default.png"> <button type="button" class="admin-button secondary-button select-shield-button" data-target="away">Seleccionar Escudo</button>
                             </div>
                             <div class="form-group">
                                 <label for="awayScore">Goles Visitante:</label>
                                 <input type="number" id="awayScore" min="0" required>
                             </div>
                         </div>
-                    </div> <div class="form-actions">
+                    </div>
+                    <div class="form-actions">
                         <button type="submit" class="admin-button primary-button" id="saveResultButton">Guardar Resultado</button>
                         <button type="button" class="admin-button secondary-button" id="cancelEditButton" style="display: none;">Cancelar Edición</button>
                     </div>
@@ -131,7 +132,7 @@
                     <span class="close-button">&times;</span>
                     <h2 class="box-title">Seleccionar Escudo</h2>
                     <div id="shieldList" class="shield-list">
-                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -161,7 +162,7 @@
                         </tr>
                     </thead>
                     <tbody id="resultsTableBody">
-                        </tbody>
+                    </tbody>
                 </table>
             </section>
             <button id="logoutButton" class="admin-button secondary-button" style="margin-top: 20px;">Cerrar Sesión</button>
