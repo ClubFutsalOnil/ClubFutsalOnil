@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuotas y Pagos - CFS ONIL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container" style="max-width:600px; margin:2rem auto;">
+    <h1>Cuotas y Pagos</h1>
+    <table border="1" style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th>Concepto</th>
+          <th>Fecha Vencimiento</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody id="cuotasBody">
+      </tbody>
+    </table>
+    <p><a href="dashboard-socios.html">Volver al Dashboard</a></p>
+  </main>
+
+  <script>
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if(!loggedInUser){
+      alert('Acceso no autorizado. Por favor, inicia sesión.');
+      window.location.href = 'login.html';
+    }
+
+    // Datos simulados de cuotas
+    const cuotasSimuladas = [
+      {concepto: 'Cuota Enero 2025', vencimiento: '2025-01-31', estado: 'Pagada'},
+      {concepto: 'Cuota Febrero 2025', vencimiento: '2025-02-28', estado: 'Pendiente'},
+      {concepto: 'Cuota Marzo 2025', vencimiento: '2025-03-31', estado: 'Pendiente'},
+    ];
+
+    const cuotasBody = document.getElementById('cuotasBody');
+
+    cuotasSimuladas.forEach(cuota => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${cuota.concepto}</td>
+        <td>${cuota.vencimiento}</td>
+        <td>${cuota.estado}</td>
+        <td>${cuota.estado === 'Pendiente' ? '<button onclick="pagarCuota(this)">Pagar</button>' : '-'}</td>
+      `;
+      cuotasBody.appendChild(tr);
+    });
+
+    function pagarCuota(btn) {
+      const fila = btn.closest('tr');
+      fila.cells[2].textContent = 'Pagada';
+      btn.remove();
+      alert('Pago simulado realizado. Gracias.');
+    }
+  </script>
+
+</body>
+</html>

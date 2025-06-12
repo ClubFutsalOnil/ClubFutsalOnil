@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noticias Exclusivas - CFS ONIL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container" style="max-width:700px; margin:2rem auto;">
+    <h1>Noticias Exclusivas para Socios</h1>
+
+    <article>
+      <h2>Nuevo Torneo de Futsal</h2>
+      <p>Este mes lanzamos un torneo interno exclusivo para socios. ¡Participa y gana premios!</p>
+    </article>
+
+    <article>
+      <h2>Reunión General</h2>
+      <p>Recordatorio: la reunión anual será el 10 de Julio a las 19:00 en la sede del club.</p>
+    </article>
+
+    <p><a href="dashboard-socios.html">Volver al Dashboard</a></p>
+  </main>
+
+  <script>
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if(!loggedInUser){
+      alert('Acceso no autorizado. Por favor, inicia sesión.');
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfil Socio - CFS ONIL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container" style="max-width:500px; margin:2rem auto;">
+    <h1>Mi Perfil</h1>
+    <form id="profileForm">
+      <label>Correo electrónico</label><br/>
+      <input type="email" id="email" disabled /><br/>
+
+      <label>Nombre completo</label><br/>
+      <input type="text" id="name" placeholder="Tu nombre" required /><br/>
+
+      <label>Teléfono</label><br/>
+      <input type="tel" id="phone" placeholder="Tu teléfono" /><br/>
+
+      <button type="submit">Guardar Cambios</button>
+    </form>
+    <p><a href="dashboard-socios.html">Volver al Dashboard</a></p>
+    <p id="message" style="color:green;"></p>
+  </main>
+
+  <script>
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if(!loggedInUser){
+      alert('Acceso no autorizado. Por favor, inicia sesión.');
+      window.location.href = 'login.html';
+    }
+
+    const profileForm = document.getElementById('profileForm');
+    const message = document.getElementById('message');
+
+    // Mostrar datos
+    const users = JSON.parse(localStorage.getItem('users') || '{}');
+    const userData = users[loggedInUser]?.profile || {};
+
+    document.getElementById('email').value = loggedInUser;
+    document.getElementById('name').value = userData.name || '';
+    document.getElementById('phone').value = userData.phone || '';
+
+    profileForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      // Guardar datos perfil en user
+      if(!users[loggedInUser]){
+        users[loggedInUser] = {password: ''};
+      }
+      users[loggedInUser].profile = {name, phone};
+
+      localStorage.setItem('users', JSON.stringify(users));
+
+      message.textContent = 'Perfil guardado correctamente.';
+      setTimeout(() => message.textContent = '', 3000);
+    });
+  </script>
+
+</body>
+</html>

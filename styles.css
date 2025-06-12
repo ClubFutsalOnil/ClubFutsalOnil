@@ -174,11 +174,39 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    padding: 15px 0; /* Ajusta el padding si es necesario */
 }
 
 .logo-link {
-    flex-shrink: 0;
+    /* Mantenemos flex-shrink para que no se encoja */
+    flex-shrink: 0; 
+    /* Establece un ancho fijo o máximo para el contenedor del logo */
+    width: 120px; /* Puedes ajustar este valor a tu gusto */
+    /* O si prefieres un ancho máximo para que pueda ser más pequeño en móvil */
+    /* max-width: 150px; */ 
+    height: auto; /* Asegura que la altura se ajuste proporcionalmente */
+    display: flex; /* Para centrar la imagen dentro si el link es más grande */
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-link img {
+    /* La imagen debe ocupar el 100% del contenedor .logo-link */
+    width: 100%; 
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 80px; /* Limita la altura máxima de la imagen para que no sea demasiado grande */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin distorsionarse */
+}
+
+/* Ajustes para pantallas más pequeñas si es necesario */
+@media (max-width: 768px) {
+    .logo-link {
+        width: 100px; /* Reduce el tamaño del logo en móviles */
+    }
+    .logo-link img {
+        max-height: 60px; /* Reduce la altura máxima de la imagen en móviles */
+    }
+}
 }
 
 .main-logo {

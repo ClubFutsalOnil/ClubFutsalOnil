@@ -4,256 +4,107 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calendario CFS ONIL - Futsal</title>
-  <style>
-    /* Fondo con imagen */
-    body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 20px;
-  color: #f0f0f0;
-  background: url('assets/images/fondocalenda.png') no-repeat center top fixed;
-  background-size: 100% auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-    /* Contenedor para el logo y línea amarilla */
-    .header-container {
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    /* Logo arriba */
-    .main-logo {
-      max-width: 220px;
-      height: auto;
-      margin: 0 auto 8px auto;
-      display: block;
-    }
-
-    /* Línea amarilla corporativa */
-    .yellow-line {
-      height: 5px;
-      background-color: #ffd500; /* Amarillo corporativo */
-      border-radius: 3px;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 15px auto;
-    }
-
-    /* Navegación bajo logo */
-    .nav-links {
-      max-width: 900px;
-      background: white;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #003366;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background-color: #ffd500;
-      color: #003366;
-      outline: none;
-    }
-
-    /* Barra filtros */
-    .filter-bar {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 30px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
-      max-width: 900px;
-      width: 100%;
-    }
-
-    .filter-bar label {
-      margin-right: 6px;
-      align-self: center;
-      white-space: nowrap;
-    }
-
-    select {
-      padding: 8px 14px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-      background: rgba(0, 74, 153, 0.85);
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
-      min-width: 160px;
-    }
-    select:hover, select:focus {
-      background: #0071e3;
-      outline: none;
-    }
-
-    /* Calendario */
-    .calendario-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
-      gap: 20px;
-      width: 100%;
-    }
-
-    .partido-card {
-      background-color: rgba(0, 51, 102, 0.8);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: background-color 0.3s ease;
-    }
-    .partido-card:hover {
-      background-color: rgba(0, 51, 102, 0.95);
-    }
-
-    .partido-header {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #ffd500;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .partido-body {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .equipo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: #fff;
-      min-width: 120px;
-    }
-    .equipo.local {
-      justify-content: flex-start;
-    }
-    .equipo.visitante {
-      justify-content: flex-end;
-      text-align: right;
-    }
-
-    .logo-equipo {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-      border-radius: 6px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.6);
-      background: #003366;
-    }
-
-    .resultado {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #ffd500;
-      min-width: 60px;
-      text-align: center;
-      user-select: none;
-    }
-
-    .loading-message, .error-message {
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #ffd500;
-      padding: 40px 0;
-      grid-column: 1/-1;
-    }
-
-    @media (max-width: 480px) {
-      .filter-bar {
-        flex-direction: column;
-        align-items: center;
-      }
-      .partido-body {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .equipo.local, .equipo.visitante {
-        justify-content: center;
-        min-width: auto;
-      }
-      .nav-links {
-        gap: 15px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-
-
-
-  <div class="header-container">
-    <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
-    <div class="yellow-line"></div>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="index.html">Home</a>
-      <a href="equipos.html">Equipos</a>
-      <a href="calendario.html">Calendario</a>
-      <a href="noticias.html">Noticias</a>
-      <a href="elclub.html">El Club</a>
+  <!-- Encabezado -->
+  <header class="main-header">
+    <div class="top-header-bar">
+      <div class="container top-header-content">
+        <div class="social-links">
+          <span>Síguenos</span>
+          <a href="https://facebook.com/cfsonil" target="_blank"><img src="assets/images/socialicons/face.jpg" alt="Facebook" class="social-icon" /></a>
+          <a href="https://instagram.com/cfsonil" target="_blank"><img src="assets/images/socialicons/insta.jpg" alt="Instagram" class="social-icon" /></a>
+          <a href="https://wa.me/34XXXXXXXXX" target="_blank"><img src="assets/images/socialicons/whats.jpg" alt="WhatsApp" class="social-icon" /></a>
+        </div>
+        <div class="top-header-buttons">
+          <a href="#" class="top-button">Acceso Socios</a>
+          <a href="#" class="top-button">Tienda</a>
+          <a href="#" class="top-button">Contacto</a>
+        </div>
+      </div>
+    </div>
+    <nav class="main-navigation-bar">
+      <div class="container main-navigation-content">
+        <a href="index.html" class="logo-link">
+          <img src="assets/images/patrocinadores/noproblem.jpg" alt="Logo del Club" class="logo-img" />
+          <img src="assets/images/patrocinadores/torriko.jpg" alt="Logo del Club" class="logo-img" />
+        </a>
+        <div class="mobile-menu-toggle"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="noticias.html">Noticias</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
     </nav>
-  </div>
+  </header>
 
-  <div class="filter-bar">
-    <label for="categoria-select">Selecciona una categoría:</label>
-    <select id="categoria-select">
-      <option value="">Todas</option>
-    </select>
+  <main>
+    <div class="container calendar-section">
+      <h1 class="calendar-title">Temporadas y Jornadas</h1>
 
-    <label for="jornada-select">Selecciona jornada:</label>
-    <select id="jornada-select">
-      <option value="">Todas</option>
-    </select>
-  </div>
+      <div class="calendar-filters category-filter">
+        <label for="jornada-select">Selecciona Jornada:</label>
+        <select id="jornada-select">
+          <option value="">Todas</option>
+        </select>
 
-  <section class="calendario-container" id="calendario">
-    <p class="loading-message">Selecciona una jornada para cargar los partidos.</p>
-  </section>
+        <label for="categoria-select">Filtra por Categoría:</label>
+        <select id="categoria-select">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <div class="results-table-section">
+        <div class="results-table-container" id="calendario-container">
+          <p class="loading-message">Selecciona una jornada para cargar los partidos.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/logo/logocfsonil.png" alt="Logo del Club" />
+      </div>
+      <div class="footer-links">
+        <h3>Enlaces Rápidos</h3>
+        <ul>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="#">Calendario</a></li>
+          <li><a href="#">Socios</a></li>
+          <li><a href="#">Historia</a></li>
+        </ul>
+      </div>
+      <div class="footer-socials">
+        <h3>Síguenos</h3>
+        <a href="#"><img src="assets/images/socialicons/face.jpg" alt="Facebook" class="social-icon" /></a>
+        <a href="#"><img src="assets/images/socialicons/insta.jpg" alt="Instagram" class="social-icon" /></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 Club Deportivo. Todos los derechos reservados. <a href="admin-results.html">Administrar Resultados</a></p>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const baseUrl = 'https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec';
 
-    const calendarioContainer = document.getElementById('calendario');
+    const calendarioContainer = document.getElementById('calendario-container');
     const categoriaSelect = document.getElementById('categoria-select');
     const jornadaSelect = document.getElementById('jornada-select');
 
     let allMatches = [];
 
-    // Crear opciones jornadas 1 a 30
+    // Cargar jornadas hoja1 a hoja30
     for (let i = 1; i <= 30; i++) {
       const option = document.createElement('option');
       option.value = `hoja${i}`;
@@ -261,68 +112,70 @@
       jornadaSelect.appendChild(option);
     }
 
-    function crearPartidoCard(match) {
-      const card = document.createElement('div');
-      card.className = 'partido-card';
-
-      const jornada = match['Jornada'] || 'Jornada X';
-      const fecha = match['Fecha'] || 'Fecha X';
-      const local = match['Local'] || 'Local';
-      const visitante = match['Visitante'] || 'Visitante';
-      const resultado = match['Resultado'] || '';
-      const escudoLocal = match['Escudo Local'] || '';
-      const escudoVisitante = match['Escudo Visitante'] || '';
-
-      card.innerHTML = `
-        <div class="partido-header">
-          <span>${jornada}</span> <span>${fecha}</span>
-        </div>
-        <div class="partido-body">
-          <div class="equipo local">
-            <img src="${escudoLocal}" alt="${local}" class="logo-equipo" />
-            <span>${local}</span>
-          </div>
-          <div class="resultado"><strong>${resultado}</strong></div>
-          <div class="equipo visitante">
-            <span>${visitante}</span>
-            <img src="${escudoVisitante}" alt="${visitante}" class="logo-equipo" />
-          </div>
-        </div>
+    function crearTablaHTML(partidos) {
+      return `
+        <table class="calendar-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Competición</th>
+              <th>Local</th>
+              <th>Resultado</th>
+              <th>Visitante</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${partidos.map(match => `
+              <tr class="result-row">
+                <td>${match['Fecha'] || 'N/D'}</td>
+                <td>${match['Hora'] || 'N/D'}</td>
+                <td>
+                  <span class="competition-tag ${match['Competición'] ? match['Competición'].toLowerCase().replace(/\s/g, '-') : 'default'}">
+                    ${match['Competición'] || 'N/D'}
+                  </span><br>
+                  <small>${match['Categoría'] || ''}</small>
+                </td>
+                <td class="team-cell">
+                  ${match['Escudo Local'] ? `<img src="${match['Escudo Local']}" class="shield-img" alt="">` : ''}
+                  ${match['Local'] || 'N/D'}
+                </td>
+                <td class="score"><span>${match['Resultado'] || '-'}</span></td>
+                <td class="team-cell">
+                  ${match['Escudo Visitante'] ? `<img src="${match['Escudo Visitante']}" class="shield-img" alt="">` : ''}
+                  ${match['Visitante'] || 'N/D'}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
       `;
-
-      return card;
     }
 
-    function mostrarPartidos(matches) {
-      calendarioContainer.innerHTML = '';
-      if (matches.length === 0) {
+    function mostrarPartidos(partidos) {
+      if (partidos.length === 0) {
         calendarioContainer.innerHTML = `<p class="loading-message">No hay partidos para mostrar.</p>`;
         return;
       }
-
-      matches.forEach(match => {
-        const card = crearPartidoCard(match);
-        calendarioContainer.appendChild(card);
-      });
+      calendarioContainer.innerHTML = crearTablaHTML(partidos);
     }
 
     function cargarDatosPorJornada(jornadaSheet) {
       if (!jornadaSheet) {
-        calendarioContainer.innerHTML = '<p class="loading-message">Selecciona una jornada para cargar los partidos.</p>';
-        categoriaSelect.innerHTML = '<option value="">Todas</option>'; // Reset categorías
+        calendarioContainer.innerHTML = `<p class="loading-message">Selecciona una jornada para cargar los partidos.</p>`;
+        categoriaSelect.innerHTML = '<option value="">Todas</option>';
         return;
       }
 
       calendarioContainer.innerHTML = '<p class="loading-message">Cargando partidos...</p>';
-      categoriaSelect.innerHTML = '<option value="">Todas</option>'; // Reset categorías
+      categoriaSelect.innerHTML = '<option value="">Todas</option>';
 
       fetch(`${baseUrl}?sheet=${jornadaSheet}`)
         .then(res => res.json())
         .then(data => {
           allMatches = data;
 
-          // Obtener categorías únicas para esta jornada
-          const categorias = [...new Set(allMatches.map(m => m['Categoría']).filter(c => c))];
+          const categorias = [...new Set(allMatches.map(m => m['Categoría']).filter(Boolean))];
           categorias.forEach(cat => {
             const option = document.createElement('option');
             option.value = cat;
@@ -340,20 +193,23 @@
 
     function filtrarPorCategoria() {
       const cat = categoriaSelect.value;
-
-      const filtrados = cat
-        ? allMatches.filter(match => match['Categoría'] === cat)
-        : allMatches;
-
+      const filtrados = cat ? allMatches.filter(p => p['Categoría'] === cat) : allMatches;
       mostrarPartidos(filtrados);
     }
 
     jornadaSelect.addEventListener('change', () => {
       cargarDatosPorJornada(jornadaSelect.value);
-      categoriaSelect.value = ''; // Reset categoría al cambiar jornada
+      categoriaSelect.value = '';
     });
 
     categoriaSelect.addEventListener('change', filtrarPorCategoria);
+  </script>
+
+  <script>
+    // Registrar Houdini si está disponible
+    if ('paintWorklet' in CSS) {
+      CSS.paintWorklet.addModule('houdini-ripple.js');
+    }
   </script>
 
 </body>
