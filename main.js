@@ -1,85 +1,75 @@
 // main.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ... (Tu código existente para el header, carrusel y menú móvil) ...
+    // --- Lógica para el header, carrusel y menú móvil (Tu código existente) ---
+    const slides = document.querySelectorAll(".hero-section .slide");
+    let currentSlide = 0;
 
-    // --- Lógica para Cargar Resultados desde localStorage ---
+    function showNextSlide() {
+        if (slides.length === 0) return; // Evita errores si no hay slides
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+    }
+    // Solo inicia el intervalo si hay slides
+    if (slides.length > 0) {
+        setInterval(showNextSlide, 5000);
+    }
+
+    const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener("click", () => {
+            const isExpanded = navLinks.classList.toggle("active");
+            mobileMenuToggle.setAttribute('aria-expanded', isExpanded); // Actualiza el estado ARIA
+        });
+    }
+
+    // --- Lógica para Cargar Resultados desde localStorage o API ---
     const resultsTableBody = document.querySelector('.results-table tbody');
     const categorySelect = document.getElementById('category-select'); // Si tienes un filtro por categoría en la vista pública
 
-    // Mapeo de nombres de equipos a sus URLs de escudo (para usar en los resultados por defecto)
-    const teamShieldsPublic = {
-        'Alfas': 'assets/images/escudos/alfas.png',
-        'Aspe': 'assets/images/escudos/aspe.png',
-        'Biar': 'assets/images/escudos/biar.png',
-        'Blas': 'assets/images/escudos/blas.png',
-        'Castalla': 'assets/images/escudos/castalla.png',
-        'Dinamita': 'assets/images/escudos/dinamita.png',
-        'Hercules': 'assets/images/escudos/hercules.png',
-        'Hoya': 'assets/images/escudos/hoya.png',
-        'Ibi': 'assets/images/escudos/ibi.png',
-        'Mutxamel': 'assets/images/escudos/mutxamel.png',
-        'Onil': 'assets/images/escudos/onil.png',
-        'Serelles': 'assets/images/escudos/serelles.png',
-        // Asegúrate de que este mapeo sea idéntico al de admin-script.js
-    };
-    const DEFAULT_SHIELD_PATH_PUBLIC = 'assets/images/escudos/default.png'; // Ruta a un escudo por defecto para la vista pública
+    // Definir una ruta por defecto para escudos si no se encuentra ninguno
+    // Si quieres que no se muestre nada, deja la cadena vacía.
+    const DEFAULT_SHIELD_PLACEHOLDER = '<div class="no-shield-placeholder-table">S/E</div>'; // Placeholder para "Sin Escudo"
 
-    function loadAndRenderResults() {
-        const storedResults = localStorage.getItem('clubResults');
-        let results = [];
-        if (storedResults) {
-            results = JSON.parse(storedResults);
-        } else {
-            // Si no hay resultados guardados, cargamos algunos por defecto
-            results = [
-                // Añade la propiedad 'category' a tus resultados de ejemplo
-                { id: '1', date: '2025-05-25', competition: 'liga', category: 'Senior A', homeTeam: 'Alfas', homeScore: 3, awayTeam: 'Biar', awayScore: 1, homeShield: teamShieldsPublic['Alfas'], awayShield: teamShieldsPublic['Biar'] },
-                { id: '2', date: '2025-05-18', competition: 'copa', category: 'Juvenil', homeTeam: 'Aspe', homeScore: 0, awayTeam: 'Castalla', awayScore: 2, homeShield: teamShieldsPublic['Aspe'], awayShield: teamShieldsPublic['Castalla'] },
-                { id: '3', date: '2025-05-10', competition: 'champions', category: 'Femenino', homeTeam: 'Dinamita', homeScore: 2, awayTeam: 'Hercules', awayScore: 2, homeShield: teamShieldsPublic['Dinamita'], awayShield: teamShieldsPublic['Hercules'] },
-                { id: '4', date: '2025-05-03', competition: 'liga', category: 'Senior B', homeTeam: 'Hoya', homeScore: 1, awayTeam: 'Ibi', awayScore: 4, homeShield: teamShieldsPublic['Hoya'], awayShield: teamShieldsPublic['Ibi'] },
-                { id: '5', date: '2025-04-28', competition: 'liga', category: 'Cadete', homeTeam: 'Mutxamel', homeScore: 1, awayTeam: 'Onil', awayScore: 0, homeShield: teamShieldsPublic['Mutxamel'], awayShield: teamShieldsPublic['Onil'] },
-                { id: '6', date: '2025-04-20', competition: 'copa', category: 'Infantil', homeTeam: 'Serelles', homeScore: 1, awayTeam: 'Alfas', awayScore: 3, homeShield: teamShieldsPublic['Serelles'], awayShield: teamShieldsPublic['Alfas'] },
-            ];
-            // Guardar estos resultados por defecto en localStorage para que el admin los vea
-            localStorage.setItem('clubResults', JSON.stringify(results));
-        }
-        renderPublicResults(results);
-    }
+    // Función para renderizar los resultados en la tabla
+    function renderPublicResults(resultsToDisplay) {
+        if (!resultsTableBody) return; // Asegúrate de que el cuerpo de la tabla existe
+        resultsTableBody.innerHTML = ''; // Limpia resultados anteriores
 
-    function renderPublicResults(resultsToRender) {
-        resultsTableBody.innerHTML = ''; // Limpiar la tabla existente
-
-        // Ordenar resultados por fecha, más reciente primero
-        resultsToRender.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        // Limitar a los 10 últimos resultados si hay muchos
-        const recentResults = resultsToRender.slice(0, 10);
-
-        if (recentResults.length === 0) {
-            resultsTableBody.innerHTML = '<tr><td colspan="5">No hay resultados disponibles en este momento.</td></tr>';
+        if (resultsToDisplay.length === 0) {
+            resultsTableBody.innerHTML = '<tr><td colspan="5">No hay resultados disponibles.</td></tr>';
             return;
         }
 
-        recentResults.forEach(result => {
+        resultsToDisplay.forEach(result => {
             const row = document.createElement('tr');
             row.classList.add('result-row');
-            row.setAttribute('data-category', result.competition); // Asumiendo que el filtro público es por competición
+            // 'data-category' para el filtro público, usa la competición (competition) o la categoría (category) según necesites filtrar
+            row.setAttribute('data-category', result.competition || result.category || 'general');
 
-            // Usa el escudo guardado o el por defecto para la visualización pública
-            const displayHomeShield = result.homeShield || DEFAULT_SHIELD_PATH_PUBLIC;
-            const displayAwayShield = result.awayShield || DEFAULT_SHIELD_PATH_PUBLIC;
+            // Usa el escudo guardado o el placeholder si no hay
+            const homeShieldContent = result.homeShield ? `<img src="${result.homeShield}" alt="Escudo ${result.homeTeam}" class="shield-img">` : DEFAULT_SHIELD_PLACEHOLDER;
+            const awayShieldContent = result.awayShield ? `<img src="${result.awayShield}" alt="Escudo ${result.awayTeam}" class="shield-img">` : DEFAULT_SHIELD_PLACEHOLDER;
 
             row.innerHTML = `
                 <td>${result.date}</td>
-                <td><span class="competition-tag ${result.competition}">${result.competition.charAt(0).toUpperCase() + result.competition.slice(1)}</span><br><small>${result.category || ''}</small></td>
+                <td>
+                    <span class="competition-tag ${result.competition ? result.competition.toLowerCase().replace(/\s/g, '-') : 'default'}">
+                        ${result.competition ? result.competition.charAt(0).toUpperCase() + result.competition.slice(1) : 'N/D'}
+                    </span>
+                    <br>
+                    <small>${result.category || ''}</small>
+                </td>
                 <td class="team-cell">
-                    <img src="${displayHomeShield}" alt="Escudo ${result.homeTeam}" class="shield-img">
+                    ${homeShieldContent}
                     <span class="team-name">${result.homeTeam}</span>
                 </td>
                 <td class="score">${result.homeScore} - ${result.awayScore}</td>
                 <td class="team-cell">
-                    <img src="${displayAwayShield}" alt="Escudo ${result.awayTeam}" class="shield-img">
+                    ${awayShieldContent}
                     <span class="team-name">${result.awayTeam}</span>
                 </td>
             `;
@@ -87,5 +77,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ... (El resto de tu código de main.js, incluyendo el filtro de categoría si lo tienes) ...
+    // Lógica principal para cargar resultados
+    let allMatchesData = []; // Variable global para almacenar todos los partidos cargados
+
+    function loadAndDisplayResults() {
+        // 1. Intentar cargar desde localStorage
+        const localStorageResults = JSON.parse(localStorage.getItem('matchResults'));
+
+        if (localStorageResults && localStorageResults.length > 0) {
+            // Si hay resultados en localStorage, úsalos
+            allMatchesData = localStorageResults;
+            console.log('Resultados cargados desde localStorage.');
+            renderPublicResults(allMatchesData);
+            updateCategoryFilter(allMatchesData); // Actualizar filtro de categorías con los resultados de localStorage
+        } else {
+            // 2. Si no hay resultados en localStorage, cargar desde la API
+            console.log('No hay resultados en localStorage, intentando cargar desde API...');
+            fetch('https://script.google.com/macros/s/AKfycbye4VbAEloIRDGzDhpqSLNxxnnJK3-g78y-dUJ8tcOaWJOPxBf805GuTYa8FMdQvg8/exec')
+                .then(response => response.json())
+                .then(data => {
+                    // Adaptar los datos de la API para que coincidan con la estructura de localStorage
+                    allMatchesData = data.map(apiResult => {
+                        const scoreParts = apiResult["Resultado"] ? apiResult["Resultado"].split('-').map(s => parseInt(s.trim(), 10)) : [0, 0];
+                        // Puedes añadir una lógica aquí para mapear nombres de equipos de la API a rutas de escudo si es necesario
+                        // Por ejemplo, usando un objeto similar a `teamShields` en admin-script.js
+                        return {
+                            id: apiResult["id"] || Date.now().toString(),
+                            homeTeam: apiResult["Local"] || 'N/D',
+                            awayTeam: apiResult["Visitante"] || 'N/D',
+                            homeScore: scoreParts[0],
+                            awayScore: scoreParts[1],
+                            competition: apiResult["Competición"] || 'N/D',
+                            category: apiResult["Categoría"] || 'N/D',
+                            date: apiResult["Fecha"] || 'N/D',
+                            homeShield: apiResult["EscudoLocal"] || '', // Asume que la API puede tener un campo "EscudoLocal"
+                            awayShield: apiResult["EscudoVisitante"] || '' // Asume que la API puede tener un campo "EscudoVisitante"
+                        };
+                    });
+                    console.log('Resultados cargados desde API.');
+                    renderPublicResults(allMatchesData);
+                    updateCategoryFilter(allMatchesData); // Actualizar filtro de categorías con los resultados de la API
+                })
+                .catch(error => {
+                    console.error("Error al cargar la API:", error);
+                    if (resultsTableBody) {
+                        resultsTableBody.innerHTML = "<tr><td colspan='5'>Error al cargar los datos.</td></tr>";
+                    }
+                });
+        }
+    }
+
+    // Función para poblar el filtro de categoría (para la vista pública)
+    function updateCategoryFilter(matches) {
+        if (!categorySelect) return;
+        const categories = [...new Set(matches.map(match => match.competition).filter(comp => comp && comp.trim() !== ""))];
+        categorySelect.innerHTML = '<option value="all">Todas las Competiciones</option>'; // Opción para mostrar todo
+        categories.sort().forEach(comp => {
+            const option = document.createElement("option");
+            option.value = comp;
+            option.textContent = comp;
+            categorySelect.appendChild(option);
+        });
+    }
+
+    // Event Listener para el filtro de categoría (vista pública)
+    if (categorySelect) {
+        categorySelect.addEventListener("change", function () {
+            const selectedCompetition = this.value;
+            // Filtra sobre los datos que estén actualmente en `allMatchesData` (ya sean de localStorage o API)
+            const filtered = selectedCompetition === 'all'
+                ? allMatchesData
+                : allMatchesData.filter(match => match.competition === selectedCompetition);
+            renderPublicResults(filtered);
+        });
+    }
+
+    // Cargar y mostrar los resultados al cargar la página
+    loadAndDisplayResults();
 });

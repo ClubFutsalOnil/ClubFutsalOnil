@@ -68,14 +68,19 @@
                     <div class="form-grid">
                         <div class="team-column home-team-column">
                             <h3>Equipo Local</h3>
-                            <div class="form-group team-selection-group">
-                                <div class="selected-team-display">
-                                    <img id="selectedHomeShield" src="assets/images/escudos/default.png" alt="Escudo Local" class="selected-shield">
-                                    <span id="displayedHomeTeamName">Nombre del equipo local</span>
-                                </div>
+                            <div class="form-group">
+                                <label for="homeTeamNameInput">Nombre del Equipo Local</label>
                                 <input type="text" id="homeTeamNameInput" placeholder="Introduce el nombre del equipo" required>
-                                <input type="hidden" id="homeTeam" required> <input type="hidden" id="homeShield" value="assets/images/escudos/default.png"> <button type="button" class="admin-button secondary-button select-shield-button" data-target="home">Seleccionar Escudo</button>
                             </div>
+                            
+                            <div class="shield-preview">
+                                <img id="selectedHomeShield" src="" alt="Sin Escudo" class="shield-preview-img no-shield-placeholder">
+                                <span id="displayedHomeTeamName">Selecciona Equipo Local</span>
+                                <input type="hidden" id="homeShield" name="homeShield">
+                                <input type="hidden" id="homeTeam" name="homeTeam">
+                            </div>
+                            <button type="button" id="selectHomeShieldButton" class="admin-button select-shield-button">Seleccionar Escudo Local</button>
+                            
                             <div class="form-group">
                                 <label for="homeScore">Goles Local:</label>
                                 <input type="number" id="homeScore" min="0" required>
@@ -106,14 +111,18 @@
 
                         <div class="team-column away-team-column">
                             <h3>Equipo Visitante</h3>
-                            <div class="form-group team-selection-group">
-                                <div class="selected-team-display">
-                                    <img id="selectedAwayShield" src="assets/images/escudos/default.png" alt="Escudo Visitante" class="selected-shield">
-                                    <span id="displayedAwayTeamName">Nombre del equipo visitante</span>
-                                </div>
+                            <div class="form-group">
+                                <label for="awayTeamNameInput">Nombre del Equipo Visitante</label>
                                 <input type="text" id="awayTeamNameInput" placeholder="Introduce el nombre del equipo" required>
-                                <input type="hidden" id="awayTeam" required> <input type="hidden" id="awayShield" value="assets/images/escudos/default.png"> <button type="button" class="admin-button secondary-button select-shield-button" data-target="away">Seleccionar Escudo</button>
                             </div>
+                            <div class="shield-preview">
+                                <img id="selectedAwayShield" src="" alt="Sin Escudo" class="shield-preview-img no-shield-placeholder">
+                                <span id="displayedAwayTeamName">Selecciona Equipo Visitante</span>
+                                <input type="hidden" id="awayShield" name="awayShield">
+                                <input type="hidden" id="awayTeam" name="awayTeam">
+                            </div>
+                            <button type="button" id="selectAwayShieldButton" class="admin-button select-shield-button">Seleccionar Escudo Visitante</button>
+                            
                             <div class="form-group">
                                 <label for="awayScore">Goles Visitante:</label>
                                 <input type="number" id="awayScore" min="0" required>
@@ -122,17 +131,17 @@
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="admin-button primary-button" id="saveResultButton">Guardar Resultado</button>
-                        <button type="button" class="admin-button secondary-button" id="cancelEditButton" style="display: none;">Cancelar Edición</button>
+                        <button type="button" class="admin-button secondary-button" id="cancelButton">Cancelar</button>
                     </div>
                 </form>
             </section>
 
-            <div id="shieldSelectionModal" class="modal">
+            <div id="selectShieldModal" class="modal" style="display: none;">
                 <div class="modal-content">
-                    <span class="close-button">&times;</span>
-                    <h2 class="box-title">Seleccionar Escudo</h2>
-                    <div id="shieldList" class="shield-list">
-                    </div>
+                    <span class="close-modal-button">&times;</span>
+                    <h2>Seleccionar Escudo</h2>
+                    <div id="shield-grid-container" class="shield-grid-container">
+                        </div>
                 </div>
             </div>
 
@@ -155,6 +164,7 @@
                         <tr>
                             <th>Fecha</th>
                             <th>Competición</th>
+                            <th>Categoría</th>
                             <th>Local</th>
                             <th>Resultado</th>
                             <th>Visitante</th>
