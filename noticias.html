@@ -138,38 +138,41 @@
 
   <main class="news-container">
     <h1 class="news-title">Noticias del Club</h1>
-
-    <div class="news-item">
-      <h3>Inscripciones abiertas para el Campus de Verano 2025</h3>
-      <img src="assets/images/noticias/campus2025.jpg" alt="Campus verano 2025">
-      <p>Ya puedes apuntarte al campus de fútbol sala del verano 2025. Entrenamientos, juegos, piscina y mucha diversión para niños y niñas de 6 a 16 años. Plazas limitadas.</p>
-    </div>
-
-    <div class="news-item">
-      <h3>Prebenjamines jugarán un triangular con el serelles de Alcoy.</h3>
-
-      <h3>CFS Onil Alevin- Futsal Ibi 12.30 h</h3>
-
-      <img src="assets/images/noticias/amistoso.jpg" alt="Partido amistoso">
-      <p>Los partidos serán de 30 minutos.</p>
-
-      <p>Serelles - CFS Onil  Prebenjamín A 10:00 h</p>
-
-      <p>Serelles- CFS Onil Prebenjamín B 10.30 h</p>
-
-      <p>CFS Onil Querubines - San Juan y San Pablo 11.00h</p>
-
-      <p>CFS Onil Prebenjamin A - CFS Onil Prebenjamón B - 11.45</p>
-
-     <p> CFS Onil Alevin- Futsal Ibi 12.30 h.</p>
-    </div>
-
-    <div class="news-item">
-      <h3>Nuevas equipaciones para la temporada 2024-2025</h3>
-      <img src="assets/images/noticias/equipacion.jpg" alt="Equipaciones nuevas">
-      <p>Presentamos el diseño oficial de las nuevas camisetas del club para esta temporada. Modernas, funcionales y con los colores de siempre.</p>
-    </div>
-
+    <div id="news-page-container"></div>
   </main>
+
+  <!-- Archivos JS -->
+  <script src="noticias-data.js"></script>
+  <script>
+    const container = document.getElementById("news-page-container");
+    noticias.forEach((noticia, i) => {
+      const item = document.createElement("div");
+      item.className = "news-item";
+      item.innerHTML = `
+        <h3>${noticia.titulo}</h3>
+        <img src="${noticia.imagen}" alt="Imagen noticia ${i+1}">
+        <p>${noticia.contenido}</p>
+      `;
+      container.appendChild(item);
+    });
+  </script>
+
+<main class="main-content container">
+    <section class="featured-news-section" aria-labelledby="all-news-title">
+        <h2 class="section-title" id="all-news-title">Todas las Noticias</h2>
+        <div class="news-grid" id="all-news-container">
+            <!-- Noticias se cargarán dinámicamente -->
+        </div>
+    </section>
+</main>
+
+<script>
+    fetch('noticias-data.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('all-news-container').innerHTML = data;
+        });
+</script>
+
 </body>
 </html>

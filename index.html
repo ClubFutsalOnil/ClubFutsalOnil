@@ -58,6 +58,7 @@
             <img src="assets/images/bannerfutsal.jpg" alt="Jugadores de futsal en acción en la cancha" class="slide active">
             <img src="assets/images/bannerfutsal2.jpg" alt="Equipo de futsal celebrando la victoria" class="slide">
             <img src="assets/images/bannerfutsal3.jpg" alt="Entrenamiento de futsal, tiro a puerta" class="slide">
+            <img src="assets/images/bannerfutsal5.jpg" alt="Entrenamiento de futsal, tiro a puerta" class="slide">
             <img src="assets/images/bannerfutsal4.jpg" alt="Aficionados animando en un partido de futsal" class="slide">
         </div>
  
@@ -69,29 +70,28 @@
             <h2></h2>
         </div>
     </section>
-        <section class="featured-news-section" aria-labelledby="latest-news-title">
-            <h2 class="section-title" id="latest-news-title">Últimas Noticias</h2>
-            <div class="news-grid">
+<section class="featured-news-section" aria-labelledby="latest-news-title">
+    <h2 class="section-title" id="latest-news-title">Últimas Noticias</h2>
+    <div class="news-grid" id="index-news-container">
                 <article class="news-item" aria-labelledby="news-title-1">
-                    <img src="assets/images/news/news1.jpg" alt="Imagen representativa de la noticia 1">
-                    <h3 id="news-title-1">Título de la Noticia Destacada 1</h3>
-                    <p>Breve descripción de la noticia. Haz clic para leer más.</p>
-                    <a href="noticia-detalle.html" class="read-more-button" aria-label="Leer más sobre: Título de la Noticia Destacada 1">Leer más</a>
+                    <img src="assets/images/news/campusverano25.jpg" alt="Imagen representativa de la noticia 1">
+                    <h3 id="¡Arranca el Campus de Verano 2025 del Club de Futsal Onil!">Título de la Noticia Destacada 1</h3>
+                    <p>El Club de Futsal Onil ya tiene todo listo para su esperado Campus de Verano 2025, una oportunidad perfecta para que niños y jóvenes mejoren sus habilidades en el futsal durante las vacaciones. Este año, todos los participantes recibirán una mochila y una camiseta exclusiva del club, un regalo especial para acompañar su entrenamiento y fomentar el espíritu de equipo.</p>
+                   <!-- <a href="noticia-detalle.html" class="read-more-button" aria-label="Leer más sobre: Título de la Noticia Destacada 1">Leer más</a> -->
+
                 </article>
                 <article class="news-item" aria-labelledby="news-title-2">
-                    <img src="assets/images/news/news2.jpg" alt="Imagen representativa de la noticia 2">
-                    <h3 id="news-title-2">Título de la Noticia Destacada 2</h3>
-                    <p>Breve descripción de la noticia. Haz clic para leer más.</p>
-                    <a href="noticia-detalle.html" class="read-more-button" aria-label="Leer más sobre: Título de la Noticia Destacada 2">Leer más</a>
+                    <img src="assets/images/news/carnetsocio.png" alt="Imagen representativa de la noticia 2">
+                    <h3 id="Hazte socio del CFS Onil por solo 10 € y apoya el deporte local.">Título de la Noticia Destacada 2</h3>
+                    <p>El Club de Futsal Onil lanza su campaña de socios 2025 con una propuesta accesible para todos: por solo 10 €, puedes formar parte de la familia del club y apoyar el crecimiento del futsal en nuestra localidad. Con tu colaboración ayudas a que niños y jóvenes sigan disfrutando del deporte en un entorno sano, formativo y lleno de valores.</p>
                 </article>
                 <article class="news-item" aria-labelledby="news-title-3">
-                    <img src="assets/images/news/news3.jpg" alt="Imagen representativa de la noticia 3">
-                    <h3 id="news-title-3">Título de la Noticia Destacada 3</h3>
-                    <p>Breve descripción de la noticia. Haz clic para leer más.</p>
-                    <a href="noticia-detalle.html" class="read-more-button" aria-label="Leer más sobre: Título de la Noticia Destacada 3">Leer más</a>
+                    <img src="assets/images/news/temporadasenior.jpg" alt="Imagen representativa de la noticia 3">
+                    <h3 id="El sénior del CFS Onil ya conoce a sus rivales en La Preferente 2025">Título de la Noticia Destacada 3</h3>
+                    <p>Nuestro equipo sénior disputará esta temporada la emocionante liga La Preferente, donde se medirá a clubes de gran nivel como CFS Castalla, Xaloc Alacant, Racing Novelda, CFS Elche Dream y muchos más!.</p>
                 </article>
                 </div>
-            <a href="noticias.html" class="view-all-button">Ver todas las noticias</a>
+    <a href="noticias.html" class="view-all-button">Ver todas las noticias</a>
         </section>
 
         <section class="results-categories-section">
@@ -379,6 +379,23 @@
       banner.style.display = "none";
     });
   });
+</script>
+
+
+<script>
+    fetch('noticias-data.html')
+        .then(res => res.text())
+        .then(data => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data;
+
+            const allArticles = tempDiv.querySelectorAll('.news-item');
+            const newsContainer = document.getElementById('index-news-container');
+
+            for (let i = 0; i < 3 && i < allArticles.length; i++) {
+                newsContainer.appendChild(allArticles[i].cloneNode(true));
+            }
+        });
 </script>
 
 </body>
