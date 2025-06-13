@@ -1,122 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CFS ONIL - Archivos Campus</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CFS ONIL - Galería Campus 2024</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <header class="main-header">
+        <div class="top-header-bar">
+            <div class="container top-header-content">
+                <div class="social-links">
+                    <span>Síguenos</span>
+                    <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestra página de Facebook">
+                        <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+                    </a>
+                    <a href="https://www.instagram.com/onil_club_futsal/" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestro perfil de Instagram">
+                        <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+                    </a>
+                    <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un mensaje por WhatsApp">
+                        <img src="assets/images/socialicons/whats.jpg" alt="Icono de WhatsApp" class="social-icon" />
+                    </a>
+                    <span>Gracias por visitar nuestra web. #tueresonilfutsal</span>
+                        <li><a href="index.html">Home</a></li>
+                </div>
+  
+             
+            </div>
+        </div>
+
+        <div class="main-navigation-bar">
+            <div class="container main-navigation-content">
+                <a href="index.html" class="logo-link" aria-label="Ir a la página de inicio de CFS ONIL">
+                    <img src="assets/images/logo/logocfsonil.png" alt="Logotipo de CFS ONIL" class="main-logo">
+                </a>
+                <div class="sponsor-logo-nav">
+                    <span class="sponsor-text">Partners Oficiales:</span>
+                    <img src="assets/images/patrocinadores/noproblem.jpg" alt="Logo de patrocinador No Problem" class="nav-sponsor-img">
+                    <img src="assets/images/patrocinadores/torriko.jpg" alt="Logo de patrocinador Torriko" class="nav-sponsor-img">
+                </div>
+                <nav aria-label="Menú principal de navegación del sitio">
+                    <ul class="nav-links">
+                        <li><a href="campus.html">Los Campus</a></li>
+                        <li><a href="equipos.html">Equipos</a></li>
+                        <li><a href="calendario.html">Calendario</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="elclub.html">El Club</a></li>
+                        <li><a href="contact.html">Contacto</a></li>
+                    </ul>
+                    <button class="mobile-menu-toggle" aria-label="Abrir o cerrar el menú de navegación móvil">&#9776;</button>
+                </nav>
+            </div>
+        </div>
+    </header>
 
 <header class="main-header">
-    <!-- Incluye el mismo header de index.html -->
-    <!-- Puedes copiar el header completo de index.html para mantener la estética -->
+  <!-- Incluye el mismo header de index.html -->
 </header>
 
-<main class="main-content container" aria-label="Archivos de Campus">
+    <main class="main-content container" aria-label="Galería Campus 2025">
 
-    <section class="section-title">
-        <h1>Archivos y Documentación de los Campus</h1>
-        <p>A continuación puedes consultar los años anteriores. Para acceder a las fotos o galerías de años anteriores debes ingresar la contraseña.</p>
-    </section>
+        <section class="section-title">
+            <h1>Galería de Fotos - Campus 2025</h1>
+            <p>Disfruta de una selección de imágenes del Campus de Verano 2025. Puedes hacer clic para ampliar o descargar las fotos.</p>
+        </section>
 
-    <section class="campus-archives-list">
-        <ul>
-            <li>
-                <h2>Campus 2025 (Último año)</h2>
-                <p>Documentación completa disponible sin restricciones.</p>
-                <a href="campus-2025.html" class="button-link">Ver documentación 2025</a>
-            </li>
-            <li>
-                <h2>Campus 2024</h2>
-                <p>Galería protegida con contraseña.</p>
-                <button onclick="requestPassword('2024')" class="button-link">Acceder a fotos 2024</button>
-                <div id="gallery-2024" class="hidden gallery-container"></div>
-            </li>
-         <!--    <li>
-                <h2>Campus 2023</h2>
-                <p>Galería protegida con contraseña.</p>
-                <button onclick="requestPassword('2023')" class="button-link">Acceder a fotos 2023</button>
-                <div id="gallery-2023" class="hidden gallery-container"></div> -->
-            </li>
-            <!-- Agrega más años si deseas -->
-        </ul>
-    </section>
-
-</main>
-
-<footer class="main-footer">
-    <!-- Incluye el mismo footer de index.html -->
-</footer>
-
-<script>
-    const passwords = {
-        '2024': 'clave2024',
-        '2023': 'clave2023'
-    };
-
-    function requestPassword(year) {
-        const userPass = prompt('Introduce la contraseña para acceder a la galería del Campus ' + year);
-        if(userPass === passwords[year]) {
-            showGallery(year);
-        } else {
-            alert('Contraseña incorrecta');
-        }
-    }
-
-    function showGallery(year) {
-        const galleryDiv = document.getElementById('gallery-' + year);
-        if (!galleryDiv.classList.contains('visible')) {
-            // Aquí puedes cargar dinámicamente imágenes o mostrar contenido estático
-            galleryDiv.innerHTML = `
-                <h3>Galería de fotos Campus ${year}</h3>
-                <div class="gallery-grid">
-                    <img src="assets/images/campus/${year}/foto1.jpg" alt="Foto 1 Campus ${year}">
-                    <img src="assets/images/campus/${year}/foto2.jpg" alt="Foto 2 Campus ${year}">
-                    <img src="assets/images/campus/${year}/foto3.jpg" alt="Foto 3 Campus ${year}">
-                    <!-- Añade más imágenes según disponibilidad -->
+        <section class="gallery-section">
+            <h2>🌞 Campus Verano 2025</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/logocfsonil.png" alt="Campus 2025 foto 1">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/logocfsonil.png" download>Descargar</a>
                 </div>
-            `;
-            galleryDiv.classList.remove('hidden');
-            galleryDiv.classList.add('visible');
-        }
-    }
-</script>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto2.jpg" alt="Campus 2025 foto 2">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto2.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto3.jpg" alt="Campus 2025 foto 3">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto3.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto4.jpg" alt="Campus 2025 foto 4">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto4.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto5.jpg" alt="Campus 2025 foto 5">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto5.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto6.jpg" alt="Campus 2025 foto 6">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto6.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto7.jpg" alt="Campus 2025 foto 7">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto7.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto8.jpg" alt="Campus 2025 foto 8">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto8.jpg" download>Descargar</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/photos/campus/2025/verano/foto9.jpg" alt="Campus 2025 foto 9">
+                    <a class="download-button" href="assets/images/photos/campus/2025/verano/foto9.jpg" download>Descargar</a>
+                </div>
+            </div>
+        </section>
 
+    </main>
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/logo/logocfsonil.png" alt="Logotipo de CFS ONIL en el pie de página" />
+            </div>
+            <nav class="footer-links" aria-label="Enlaces del Club">
+                <h3>El Club</h3>
+                <ul>
+                    <li><a href="elclub.html#historia">Historia</a></li>
+                    <li><a href="elclub.html#directiva">Directiva</a></li>
+                    <li><a href="elclub.html#instalaciones">Instalaciones</a></li>
+                </ul>
+            </nav>
+            <div class="footer-links">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="mailto:onilcfs@gmail.com">Email: onilcfs@gmail.com</a></li>
+                    <li><a href="https://wa.me/34XXXXXXXXX" target="_blank">WhatsApp: +34 XXXXXXXXX</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-socials">
+                <h3>Síguenos</h3>
+                <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Facebook de CFS ONIL">
+                    <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+                </a>
+                <a href="https://instagram.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Instagram de CFS ONIL">
+                    <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CFS ONIL. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
 <style>
-    /* Mantén los estilos principales desde styles.css */
-    /* Aquí estilos específicos para la galería */
-    .gallery-container.hidden {
-        display: none;
-    }
-    .gallery-container.visible {
-        margin-top: 1rem;
-    }
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-        gap: 10px;
-    }
-    .gallery-grid img {
-        width: 100%;
-        border-radius: 6px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .button-link {
-        background-color: #005a9c;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        border-radius: 4px;
-        font-weight: 600;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-        display: inline-block;
-    }
-    .button-link:hover {
-        background-color: #003f6f;
-    }
+  .gallery-section {
+    margin-top: 2rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    margin-top: 1rem;
+  }
+
+  .gallery-grid a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .gallery-grid a:hover {
+    transform: scale(1.03);
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  h2 {
+    color: #005a9c;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .section-title p {
+    margin-bottom: 2rem;
+  }
 </style>
 
 </body>

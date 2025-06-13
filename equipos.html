@@ -4,155 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Equipos - CFS ONIL</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      color: #f0f0f0;
-      background: url('assets/images/fondoweb.png') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .header-container {
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .main-logo {
-      max-width: 220px;
-      height: auto;
-      margin: 0 auto 8px auto;
-      display: block;
-    }
-
-    .yellow-line {
-      height: 5px;
-      background-color: #ffd500;
-      border-radius: 3px;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 15px auto;
-    }
-
-    .nav-links {
-      max-width: 900px;
-      background: white;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #003366;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background-color: #ffd500;
-      color: #003366;
-      outline: none;
-    }
-
-    .teams-container {
-      max-width: 900px;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-
-    .team-section {
-      margin-bottom: 30px;
-    }
-
-    .team-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #ffd500;
-      border-bottom: 2px solid #ffd500;
-      padding-bottom: 6px;
-      margin-bottom: 10px;
-    }
-
-    .team-description {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #f0f0f0;
-    }
-
-    @media (max-width: 600px) {
-      .nav-links {
-        gap: 15px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="header-container">
-    <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
-    <div class="yellow-line"></div>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="index.html">Home</a>
-      <a href="equipos.html">Equipos</a>
-      <a href="calendario.html">Calendario</a>
-      <a href="noticias.html">Noticias</a>
-      <a href="elclub.html">El Club</a>
-    </nav>
-  </div>
+    <header class="main-header">
+        <div class="top-header-bar">
+            <div class="container top-header-content">
+                <div class="social-links">
+                    <span>Síguenos</span>
+                    <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestra página de Facebook">
+                        <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+                    </a>
+                    <a href="https://instagram.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestro perfil de Instagram">
+                        <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+                    </a>
+                    <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un mensaje por WhatsApp">
+                        <img src="assets/images/socialicons/whats.jpg" alt="Icono de WhatsApp" class="social-icon" />
+                    </a>
+                    <span>Gracias por visitar nuestra web. #tueresonilfutsal</span>
+                </div>
+  
+             
+            </div>
+        </div>
 
-  <main class="teams-container">
-    <section class="team-section">
-      <h2 class="team-title">Senior</h2>
-      <p class="team-description">
-        El equipo senior compite en la liga federada de la Federación Valenciana, enfrentándose a clubes de toda la comunidad. Con una plantilla consolidada, es el equipo referencia del club.
-      </p>
+    <div class="main-navigation-bar">
+      <div class="container main-navigation-content">
+        <a href="index.html" class="logo-link" aria-label="Inicio CFS ONIL">
+          <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo">
+        </a>
+        <div class="sponsor-logo-nav">
+          <span class="sponsor-text">Partners Oficiales:</span>
+          <img src="assets/images/patrocinadores/noproblem.jpg" alt="No Problem" class="nav-sponsor-img">
+          <img src="assets/images/patrocinadores/torriko.jpg" alt="Torriko" class="nav-sponsor-img">
+        </div>
+        <nav aria-label="Menú principal">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="campus.html">Los Campus</a></li>
+            <li><a href="calendario.html">Calendario</a></li>
+            <li><a href="noticias.html">Noticias</a></li>
+            <li><a href="elclub.html">El Club</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Menú móvil">&#9776;</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content container" aria-label="Equipos del CFS ONIL">
+    <section class="section-title">
+      <h1>Equipos del Club</h1>
+      <p>Conoce a los diferentes equipos que forman parte del CFS Onil y su participación en las distintas categorías.</p>
     </section>
 
-    <section class="team-section">
-      <h2 class="team-title">Juvenil</h2>
-      <p class="team-description">
-        Nuestro equipo juvenil participa en la liga provincial, donde los jóvenes talentos siguen formándose y ganando experiencia competitiva para llegar al primer equipo.
-      </p>
-    </section>
+    <section class="teams-container">
+      <div class="team-section">
+        <h2 class="team-title">Senior</h2>
+        <p class="team-description">
+          El equipo senior compite en la liga federada de la Federación Valenciana, enfrentándose a clubes de toda la comunidad. Con una plantilla consolidada, es el equipo referencia del club.
+        </p>
+      </div>
 
-    <section class="team-section">
-      <h2 class="team-title">Cadete</h2>
-      <p class="team-description">
-        Los cadetes compiten a nivel comarcal, trabajando en aspectos técnicos y tácticos fundamentales para su desarrollo.
-      </p>
-    </section>
+      <div class="team-section">
+        <h2 class="team-title">Juvenil</h2>
+        <p class="team-description">
+          Nuestro equipo juvenil participa en la liga provincial, donde los jóvenes talentos siguen formándose y ganando experiencia competitiva para llegar al primer equipo.
+        </p>
+      </div>
 
-    <section class="team-section">
-      <h2 class="team-title">Infantil</h2>
-      <p class="team-description">
-        El equipo infantil juega en competiciones escolares y torneos amistosos, centándose en la formación integral y el trabajo en equipo.
-      </p>
-    </section>
+      <div class="team-section">
+        <h2 class="team-title">Cadete</h2>
+        <p class="team-description">
+          Los cadetes compiten a nivel comarcal, trabajando en aspectos técnicos y tácticos fundamentales para su desarrollo.
+        </p>
+      </div>
 
-    <section class="team-section">
-      <h2 class="team-title">Prebenjamín / Benjamín / Alevín</h2>
-      <p class="team-description">
-        Estas categorías base introducen a los niños en el fútbol sala con actividades lúdicas y participación en ligas escolares. Se prioriza la diversión, el aprendizaje y los valores deportivos.
-      </p>
+      <div class="team-section">
+        <h2 class="team-title">Infantil</h2>
+        <p class="team-description">
+          El equipo infantil juega en competiciones escolares y torneos amistosos, centrándose en la formación integral y el trabajo en equipo.
+        </p>
+      </div>
+
+      <div class="team-section">
+        <h2 class="team-title">Prebenjamín / Benjamín / Alevín</h2>
+        <p class="team-description">
+          Estas categorías base introducen a los niños en el fútbol sala con actividades lúdicas y participación en ligas escolares. Se prioriza la diversión, el aprendizaje y los valores deportivos.
+        </p>
+      </div>
     </section>
   </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <img src="assets/images/logo/logocfsonil.png" alt="Logotipo de CFS ONIL en el pie de página" />
+            </div>
+            <nav class="footer-links" aria-label="Enlaces del Club">
+                <h3>El Club</h3>
+                <ul>
+                    <li><a href="elclub.html#historia">Historia</a></li>
+                    <li><a href="elclub.html#directiva">Directiva</a></li>
+                    <li><a href="elclub.html#instalaciones">Instalaciones</a></li>
+                </ul>
+            </nav>
+            <div class="footer-links">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="mailto:onilcfs@gmail.com">Email: onilcfs@gmail.com</a></li>
+                    <li><a href="https://wa.me/34XXXXXXXXX" target="_blank">WhatsApp: +34 XXXXXXXXX</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer-socials">
+                <h3>Síguenos</h3>
+                <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Facebook de CFS ONIL">
+                    <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+                </a>
+                <a href="https://instagram.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Instagram de CFS ONIL">
+                    <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CFS ONIL. Todos los derechos reservados.</p>
+        </div>
+
+
+
+    </footer>
 </body>
 </html>

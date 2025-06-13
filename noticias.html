@@ -4,144 +4,186 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Noticias - CFS ONIL</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      color: #f0f0f0;
-      background: url('assets/images/fondoweb.png') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .header-container {
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .main-logo {
-      max-width: 220px;
-      height: auto;
-      margin: 0 auto 8px auto;
-      display: block;
-    }
-
-    .yellow-line {
-      height: 5px;
-      background-color: #ffd500;
-      border-radius: 3px;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto 15px auto;
-    }
-
-    .nav-links {
-      max-width: 900px;
-      background: white;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: #003366;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background-color: #ffd500;
-      color: #003366;
-      outline: none;
-    }
-
-    .news-container {
-      max-width: 900px;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-
-    .news-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #ffd500;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ffd500;
-      padding-bottom: 6px;
-    }
-
-    .news-item {
-      margin-bottom: 30px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 15px;
-    }
-
-    .news-item h3 {
-      font-size: 1.3rem;
-      color: #ffd500;
-      margin-bottom: 10px;
-    }
-
-    .news-item p {
-      color: #f0f0f0;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
     .news-item img {
       width: 100%;
       max-height: 250px;
       object-fit: cover;
       border-radius: 8px;
       margin: 10px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    @media (max-width: 600px) {
-      .nav-links {
-        gap: 15px;
-      }
+    .news-item img:hover {
+      transform: scale(1.02);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      top: 100px; /* para evitar superposición con el header */
+      left: 0;
+      width: 100%;
+      height: calc(100% - 100px);
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-container {
+      position: relative;
+      max-width: 1200px;
+      max-height: 80vh;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #000;
+      padding: 5px 10px;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 11;
+    }
+
+    .modal-close:hover {
+      background-color: #ffd500;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="header-container">
-    <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo" />
-    <div class="yellow-line"></div>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="index.html">Home</a>
-      <a href="equipos.html">Equipos</a>
-      <a href="calendario.html">Calendario</a>
-      <a href="noticias.html">Noticias</a>
-      <a href="elclub.html">El Club</a>
-    </nav>
-  </div>
+    <header class="main-header">
+        <div class="top-header-bar">
+            <div class="container top-header-content">
+                <div class="social-links">
+                    <span>Síguenos</span>
+                    <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestra página de Facebook">
+                        <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+                    </a>
+                    <a href="https://instagram.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Visita nuestro perfil de Instagram">
+                        <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+                    </a>
+                    <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un mensaje por WhatsApp">
+                        <img src="assets/images/socialicons/whats.jpg" alt="Icono de WhatsApp" class="social-icon" />
+                    </a>
+                    <span>Gracias por visitar nuestra web. #tueresonilfutsal</span>
+                </div>          
+            </div>
+        </div>
 
-  <main class="news-container">
-    <h1 class="news-title">Noticias del Club</h1>
-    <div id="news-page-container"></div>
+    <div class="main-navigation-bar">
+      <div class="container main-navigation-content">
+        <a href="index.html" class="logo-link">
+          <img src="assets/images/logo/logocfsonil.png" alt="Logo CFS ONIL" class="main-logo">
+        </a>
+        <div class="sponsor-logo-nav">
+          <span class="sponsor-text">Partners Oficiales:</span>
+          <img src="assets/images/patrocinadores/noproblem.jpg" alt="No Problem" class="nav-sponsor-img">
+          <img src="assets/images/patrocinadores/torriko.jpg" alt="Torriko" class="nav-sponsor-img">
+        </div>
+        <nav aria-label="Menú principal">
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="campus.html">Los Campus</a></li>
+            <li><a href="equipos.html">Equipos</a></li>
+            <li><a href="calendario.html">Calendario</a></li>
+            <li><a href="elclub.html">El Club</a></li>
+            <li><a href="contact.html">Contacto</a></li>
+          </ul>
+          <button class="mobile-menu-toggle" aria-label="Menú móvil">&#9776;</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content container">
+    <section class="section-title">
+      <h1>Noticias del Club</h1>
+      <p>Últimas novedades, resultados, eventos y mucho más sobre el CFS Onil.</p>
+    </section>
+
+    <div class="news-container">
+      <div id="news-page-container">
+        <!-- Noticias desde noticias-data.js -->
+      </div>
+    </div>
+
+    <section class="featured-news-section" aria-labelledby="all-news-title">
+      <h2 class="section-title" id="all-news-title">Todas las Noticias</h2>
+      <div class="news-grid" id="all-news-container">
+        <!-- Noticias desde noticias-data.html -->
+      </div>
+    </section>
   </main>
 
-  <!-- Archivos JS -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/logo/logocfsonil.png" alt="Logotipo de CFS ONIL en el pie de página" />
+      </div>
+      <nav class="footer-links" aria-label="Enlaces del Club">
+        <h3>El Club</h3>
+        <ul>
+          <li><a href="elclub.html#historia">Historia</a></li>
+          <li><a href="elclub.html#directiva">Directiva</a></li>
+          <li><a href="elclub.html#instalaciones">Instalaciones</a></li>
+        </ul>
+      </nav>
+      <div class="footer-links">
+        <h3>Contacto</h3>
+        <ul>
+          <li><a href="mailto:onilcfs@gmail.com">Email: onilcfs@gmail.com</a></li>
+          <li><a href="https://wa.me/34XXXXXXXXX" target="_blank">WhatsApp: +34 XXXXXXXXX</a></li>
+          <li><a href="privacidad.html">Política de Privacidad</a></li>
+        </ul>
+      </div>
+      <div class="footer-socials">
+        <h3>Síguenos</h3>
+        <a href="https://facebook.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Facebook de CFS ONIL">
+          <img src="assets/images/socialicons/face.jpg" alt="Icono de Facebook" class="social-icon" />
+        </a>
+        <a href="https://instagram.com/cfsonil" target="_blank" rel="noopener noreferrer" aria-label="Instagram de CFS ONIL">
+          <img src="assets/images/socialicons/insta.jpg" alt="Icono de Instagram" class="social-icon" />
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 CFS ONIL. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Modal ampliación -->
+  <div class="modal" id="img-modal">
+    <div class="modal-container">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <img class="modal-content" id="modal-img" alt="Imagen ampliada de noticia" />
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="noticias-data.js"></script>
   <script>
     const container = document.getElementById("news-page-container");
@@ -150,29 +192,35 @@
       item.className = "news-item";
       item.innerHTML = `
         <h3>${noticia.titulo}</h3>
-        <img src="${noticia.imagen}" alt="Imagen noticia ${i+1}">
+        <img src="${noticia.imagen}" alt="Imagen noticia ${i + 1}" class="zoomable">
         <p>${noticia.contenido}</p>
       `;
       container.appendChild(item);
     });
-  </script>
 
-<main class="main-content container">
-    <section class="featured-news-section" aria-labelledby="all-news-title">
-        <h2 class="section-title" id="all-news-title">Todas las Noticias</h2>
-        <div class="news-grid" id="all-news-container">
-            <!-- Noticias se cargarán dinámicamente -->
-        </div>
-    </section>
-</main>
-
-<script>
+    // Cargar otras noticias desde HTML
     fetch('noticias-data.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('all-news-container').innerHTML = data;
-        });
-</script>
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('all-news-container').innerHTML = data;
+      });
 
+    // Modal para ver imágenes ampliadas
+    const modal = document.getElementById("img-modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeModal = document.getElementById("modal-close");
+
+    document.addEventListener("click", function (e) {
+      if (e.target.classList.contains("zoomable")) {
+        modal.style.display = "flex";
+        modalImg.src = e.target.src;
+      }
+    });
+
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    };
+  </script>
 </body>
 </html>
