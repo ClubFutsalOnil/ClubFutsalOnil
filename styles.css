@@ -1511,3 +1511,42 @@ html {
         font-size: 0.8em;
     }
 }
+
+
+.cookie-banner {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0d0d0d;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+
+.cookie-banner .cookie-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cookie-banner .accept-button {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.cookie-banner .cookie-link {
+  color: #aaa;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}

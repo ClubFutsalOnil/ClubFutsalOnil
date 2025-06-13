@@ -22,10 +22,10 @@
                     <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="Envíanos un mensaje por WhatsApp">
                         <img src="assets/images/socialicons/whats.jpg" alt="Icono de WhatsApp" class="social-icon" />
                     </a>
+                    <span>Gracias por visitar nuestra web. #tueresonilfutsal</span>
                 </div>
-                <div class="top-header-buttons">
-                    <a href="socios.html" class="top-button">Acceso Club</a>
-                    </div>
+  
+             
             </div>
         </div>
 
@@ -60,14 +60,15 @@
             <img src="assets/images/bannerfutsal3.jpg" alt="Entrenamiento de futsal, tiro a puerta" class="slide">
             <img src="assets/images/bannerfutsal4.jpg" alt="Aficionados animando en un partido de futsal" class="slide">
         </div>
-        <div class="hero-content container">
-            <h1>Bienvenidos al CFS ONIL</h1>
-            <h2>La pasión por el Futsal en Onil</h2>
-        </div>
+ 
     </section>
 
     <main class="main-content container" aria-label="Contenido principal del sitio web">
-
+  <div class="hero-content container">
+            <h1>Bienvenidos al CFS ONIL</h1>
+            <h2></h2>
+        </div>
+    </section>
         <section class="featured-news-section" aria-labelledby="latest-news-title">
             <h2 class="section-title" id="latest-news-title">Últimas Noticias</h2>
             <div class="news-grid">
@@ -230,7 +231,7 @@
                 <ul>
                     <li><a href="mailto:onilcfs@gmail.com">Email: onilcfs@gmail.com</a></li>
                     <li><a href="https://wa.me/34XXXXXXXXX" target="_blank">WhatsApp: +34 XXXXXXXXX</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="privacidad.html">Política de Privacidad</a></li>
                 </ul>
             </div>
             <div class="footer-socials">
@@ -354,6 +355,32 @@
     <script src="script.js"></script>
     <script src="houdini-ripple.js"></script>
     <script src="main.js"></script>
+
+<!-- Aviso de Cookies -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <div class="cookie-content">
+    <p>Este sitio web utiliza cookies técnicas para mejorar la experiencia de usuario. No utilizamos cookies de terceros ni con fines publicitarios.</p>
+    <button id="accept-cookies" class="accept-button">Aceptar</button>
+    <a href="politica-privacidad.html" class="cookie-link">Leer más</a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const button = document.getElementById("accept-cookies");
+
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.style.display = "block";
+    }
+
+    button.addEventListener("click", () => {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.style.display = "none";
+    });
+  });
+</script>
+
 </body>
 </html>
 </body>
