@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CFS ONIL - Galería Campus 2024</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="main-header">
+    <!-- Incluye el mismo header de index.html -->
+</header>
+
+<main class="main-content container" aria-label="Galería de Campus 2024">
+
+    <section class="section-title">
+        <h1>Galería de Fotos - Campus 2024</h1>
+        <p>Accede a las imágenes de los campus de Semana Santa y Verano. La galería está protegida por contraseña.</p>
+    </section>
+
+    <section class="campus-gallery-list">
+        <ul>
+            <li>
+                <h2>Campus Semana Santa 2024</h2>
+                <p>Galería protegida con contraseña.</p>
+                <button onclick="requestPassword('ss2024')" class="button-link">Ver fotos Semana Santa</button>
+                <div id="gallery-ss2024" class="hidden gallery-container"></div>
+            </li>
+            <li>
+                <h2>Campus Verano 2024</h2>
+                <p>Galería protegida con contraseña.</p>
+                <button onclick="requestPassword('verano2024')" class="button-link">Ver fotos Verano</button>
+                <div id="gallery-verano2024" class="hidden gallery-container"></div>
+            </li>
+        </ul>
+    </section>
+
+</main>
+
+<footer class="main-footer">
+    <!-- Incluye el mismo footer de index.html -->
+</footer>
+
+<script>
+    const passwords = {
+        'ss2024': 'ssclave2024',
+        'verano2024': 'veranoclave2024'
+    };
+
+    function requestPassword(galleryId) {
+        const userPass = prompt('Introduce la contraseña para acceder a la galería del ' + (galleryId.includes('ss') ? 'Campus Semana Santa 2024' : 'Campus Verano 2024'));
+        if(userPass === passwords[galleryId]) {
+            showGallery(galleryId);
+        } else {
+            alert('Contraseña incorrecta');
+        }
+    }
+
+    function showGallery(galleryId) {
+        const galleryDiv = document.getElementById('gallery-' + galleryId);
+        if (!galleryDiv.classList.contains('visible')) {
+            // Carga dinámica de imágenes según el campus
+            let imagesHTML = '';
+            for(let i = 1; i <= 6; i++) {
+                imagesHTML += `<img src="assets/images/campus/${galleryId}/foto${i}.jpg" alt="Foto ${i} ${galleryId}">`;
+            }
+            galleryDiv.innerHTML = `
+                <h3>Galería de fotos ${galleryId.includes('ss') ? 'Semana Santa' : 'Verano'} 2024</h3>
+                <div class="gallery-grid">${imagesHTML}</div>
+            `;
+            galleryDiv.classList.remove('hidden');
+            galleryDiv.classList.add('visible');
+        }
+    }
+</script>
+
+<style>
+    .gallery-container.hidden {
+        display: none;
+    }
+    .gallery-container.visible {
+        margin-top: 1rem;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+        gap: 10px;
+    }
+    .gallery-grid img {
+        width: 100%;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .button-link {
+        background-color: #005a9c;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .button-link:hover {
+        background-color: #003f6f;
+    }
+</style>
+
+</body>
+</html>
